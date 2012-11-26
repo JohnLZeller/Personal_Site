@@ -1,0 +1,97 @@
+html, body {
+	margin: 0;
+	padding-left: 5%;
+	padding-right: 5%;
+	height: 100%;
+	width: auto;
+	background: #e3dbdb;
+}
+
+p {
+	font-family:"Courier New", Courier, monospace;
+	font-size: 18px;
+	color: #000000;
+}
+
+h2 {
+	text-align: left;
+}
+
+a:link, a:visited, a:hover, a:active {	/* unvisited, visited, mouse over and selected links */
+	color: #000000;
+	text-decoration: none;
+}
+
+#main-nav {
+	background: #e3dbdb;
+	position: fixed;
+	height: auto;
+	width: 81%;
+}
+
+	#main-nav #altnav {
+		float: right;
+		text-align: right;
+	}
+	
+	#main-nav #title {
+		padding-top: 40px;
+		float: left;
+		text-align: left;
+	}
+
+#content {
+	width: 80%;
+	padding: 10%;
+	height: auto;
+	text-align: center;
+}
+
+
+	#content #title{
+		clear: both;
+		float: left;
+		width: 100%;
+		height: auto;
+	}
+	
+	#content #pic{
+		clear: both;
+		float: left;
+		width: auto;
+		padding: 20px;
+		height: auto;
+		padding-bottom: 10%; /* So footer never blocks bottom of content */
+	}
+	
+	#content #info{	
+		float: right;
+		width: 50%;
+		padding: 20px;
+		height: auto;
+		text-align: left;
+		padding-bottom: 10%; /* So footer never blocks bottom of content */
+	}
+	
+
+	#badge {
+		display: block;
+		
+		/*set the div in the center of the screen*/
+		position: absolute;
+		top: 20%;
+		left: 20%;
+		width: auto;
+	}
+	
+
+#footer {
+	background:  #e3dbdb;
+	display: block;
+	clear: both;
+	position: fixed;
+	bottom: 0px;
+	padding: 20px;
+	height: auto;
+	width: 100%;
+}
