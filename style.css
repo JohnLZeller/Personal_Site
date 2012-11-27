@@ -2,7 +2,7 @@
  * Filename: style.css
  * Author: John Zeller
  * Date Created: November 21, 2012
- * Recently Updated: November 26, 2012
+ * Recently Updated: November 27, 2012
  * ------
  * Notes:
  * =============================================================*/
@@ -73,20 +73,41 @@ a:link, a:visited, a:hover, a:active {	/* unvisited, visited, mouse over and sel
 		width: auto;
 		padding: 20px;
 		height: auto;
+		padding-bottom: 20%; /* So footer never blocks bottom of content */
+	}
+	
+	#content #choose{
+		clear: both;
+		float: left;
+		width: auto;
+		padding: 20px;
+		height: auto;
 		padding-bottom: 10%; /* So footer never blocks bottom of content */
 	}
 	
 	#content #info{	
 		float: right;
-		width: 50%;
+		width: 40%;
 		padding: 20px;
 		height: auto;
 		text-align: left;
-		padding-bottom: 10%; /* So footer never blocks bottom of content */
+		padding-bottom: 20%; /* So footer never blocks bottom of content */
 	}
 	
 
-	#badge {
+	#badgeone {
+		visibility: visible;
+		display: block;
+		/*set the div in the center of the screen*/
+		position: absolute;
+		top: 20%;
+		left: 20%;
+		height: 244px;
+		width: auto;
+	}
+	
+	#badgetwo {
+		visibility: hidden;
 		display: block;
 		/*set the div in the center of the screen*/
 		position: absolute;

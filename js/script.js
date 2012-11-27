@@ -2,27 +2,33 @@
  * Filename: script.js
  * Author: John Zeller
  * Date Created: November 21, 2012
- * Recently Updated: November 26, 2012
+ * Recently Updated: November 27, 2012
  * ------
  * Notes:
  * =============================================================*/
 
 // JAVASCRIPT FUNCTIONS
 
+
 var badge_off = "<img src='images/badge.png' height ='244px' alt='hi, my name is JOHN ZELLER and I am a Software Engineer'>";
 var badge_on = "<img src='images/badge-f.png' height ='244px' alt='hi, my name is JOHN ZELLER and I am a Software Engineer'>";
 
 function onStart(){
-    badge_span.innerHTML = badge_off;               // Initializes the badge
+    badge_span_one.innerHTML = badge_off;                           // Initializes badgeoff div
+    badge_span_two.innerHTML = badge_on;                            // Initializes badgeon div
+    document.getElementById("badgeone").style.visibility="visible"; // Initializes the cycle of modifying the css
+    document.getElementById("badgetwo").style.visibility="hidden";
     intervalID1 = setInterval("changeBadge()",800); // Starts cycle that changes the badge every 0.8 seconds
 }
 
 function changeBadge(){
-    // Uses badge_span.innerHTML to keep state
-    if(badge_span.innerHTML.substring(17,26)=="badge.png"){         // If badge was off
-        badge_span.innerHTML = badge_on;
-    }else if(badge_span.innerHTML.substring(17,26)=="badge-f.p"){   // If badge was on
-        badge_span.innerHTML = badge_off;
+    // Uses badgeone style visibility to keep state
+    if(document.getElementById("badgeone").style.visibility=="visible"){         // If badge was off
+        document.getElementById("badgetwo").style.visibility="visible";
+        document.getElementById("badgeone").style.visibility="hidden";
+    }else if(document.getElementById("badgeone").style.visibility=="hidden"){   // If badge was on
+        document.getElementById("badgeone").style.visibility="visible";
+        document.getElementById("badgetwo").style.visibility="hidden";
     }
 }
 
@@ -100,6 +106,7 @@ function changeIcon(element, icon, on_off){
 }
     
 function changeSection(choice){
+    clearInterval(intervalID1);
     title_section.innerHTML = "<img onclick='changeSection(\"home\")' width='400px' src='images/nav/title.png'>"
     switch(choice){
         case "home":
@@ -137,7 +144,8 @@ function changeSection(choice){
 
 // HTML SPAN CONTENT SECTIONS
 
-var home_section = "<div id='badge'><span id='badge_span'></span></div>"
+var home_section = "<div id='badgeone'><span id='badge_span_one'></span></div>                                                      \
+                    <div id='badgetwo'><span id='badge_span_two'></span></div>"
 
 var about_section = "<div id='pic'><img height='50%' src='images/JohnZeller.jpg'></div>                                             \
     <div id='info'>                                                                                                                 \
@@ -152,7 +160,7 @@ var about_section = "<div id='pic'><img height='50%' src='images/JohnZeller.jpg'
     <p>I am available for interviews, talks and always happy to meet bright people with great ideas. Contact me via email,          \
     google+, facebook, twitter or carrier pigeon.</p></div>"
 
-var projects_section = "<div id='pic'><h2>Choose one:</h2></div>                                                                    \
+var projects_section = "<div id='choose'><h2>Choose one:</h2></div>                                                                    \
      <div id='title'><a onclick='changeSection(\"spacex\");' href='javascript:void(0);'><center><h1><strong>SpaceX</strong></h1>    \
         </center></a></div>                                                                                                         \
      <div id='title'><a onclick='changeSection(\"marsrover\");' href='javascript:void(0);'><center><h1><strong>OSU Mars Rover Team  \
@@ -175,6 +183,8 @@ var projects_section = "<div id='pic'><h2>Choose one:</h2></div>                
             and implemented an onboard Django-based server for controlling and reviewing tests in real-time.</p>                            \
             <p>The majority of this work was done in Python, with smaller portions being completed in HTML and                              \
             JavaScript.</p>                                                                                                                 \
+            <p>For more information about SpaceX please <a href='http://www.spacex.com' target='_blank'>           \
+            click here</a></p>                                                                                                              \
         </div>"
     
     var projects_section_marsrover = "<div id='title'><center><h1><strong>OSU Mars Rover Team</strong></h1></center></div>              \
@@ -202,7 +212,7 @@ var projects_section = "<div id='pic'><h2>Choose one:</h2></div>                
             <p>We do a multitude of public events to promote our team, our University and of course our sponsors. Our team has several      \
             sponsors, including NASA Oregon Space Grant, Mentor Graphics, National Science Foundation, Sunstone, Garmin, Fastenal, Stevens  \
             Water Sensor Systems, Midwest Motion Products, AJK Precision, Pacific Metal, Xerox, and 3D Connexion.</p>                       \
-            <p>For more information about the OSU Mars Rover Team please <a href='http://groups.engr.oregonstate.edu/osurc/urc/'>           \
+            <p>For more information about the OSU Mars Rover Team please <a href='http://groups.engr.oregonstate.edu/osurc/urc/' target='_blank'>           \
             click here</a></p>                                                                                                              \
         </div>"
     
@@ -230,6 +240,8 @@ var projects_section = "<div id='pic'><h2>Choose one:</h2></div>                
             <p>I manage team of 20 permanent volunteers within this organization, which operates largely online using a website, social     \
             media presence, government relations, and media relations, as well as taking monetary donations. To date the organization has   \
             raised upwards of $5000 non-taxdeductible donations which has enabled the improvement of every aspect of the organization.</p>  \
+            <p>For more information about Advocates for Space Exploration / Penny4NASA please <a href='http://www.penny4nasa.org' target='_blank'>           \
+            click here</a></p>                                                                                                              \
         </div>"
     
 var contact_section = "<div id='pic'><img height='50%' src='images/JohnZeller1.jpg'></div>                                           \
