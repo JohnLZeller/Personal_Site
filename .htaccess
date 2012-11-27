@@ -1,0 +1,15 @@
+//Prevent the viewing of .htaccess, style.css and script.js
+<Files .htaccess>
+order allow,deny
+deny from all
+</Files>
+
+<Files style.css>
+order allow,deny
+deny from all
+</Files>
+
+<Files script.js>
+order allow,deny
+deny from all
+</Files>
