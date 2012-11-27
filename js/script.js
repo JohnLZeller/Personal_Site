@@ -107,7 +107,7 @@ function changeIcon(element, icon, on_off){
     
 function changeSection(choice){
     clearInterval(intervalID1);
-    title_section.innerHTML = "<img onclick='changeSection(\"home\")' width='400px' src='images/nav/title.png'>"
+    title_section.innerHTML = "<a id='home'><img onclick='changeSection(\"home\")' width='400px' src='images/nav/title.png'></a>"
     switch(choice){
         case "home":
             content_section.innerHTML = home_section;
@@ -160,17 +160,16 @@ var about_section = "<div id='pic'><img height='50%' src='images/JohnZeller.jpg'
     <p>I am available for interviews, talks and always happy to meet bright people with great ideas. Contact me via email,          \
     google+, facebook, twitter or carrier pigeon.</p></div>"
 
-var projects_section = "<div id='choose'><h2>Choose one:</h2></div>                                                                    \
-     <div id='title'><a onclick='changeSection(\"spacex\");' href='javascript:void(0);'><center><h1><strong>SpaceX</strong></h1>    \
-        </center></a></div>                                                                                                         \
-     <div id='title'><a onclick='changeSection(\"marsrover\");' href='javascript:void(0);'><center><h1><strong>OSU Mars Rover Team  \
-        </strong></h1>                                                                                                              \
-        </center></a></div>                                                                                                         \
-     <div id='title'><a onclick='changeSection(\"penny4nasa\");' href='javascript:void(0);'><center><h1><strong>Advocates for Space \
-        Exploration / Penny4NASA</strong></h1></center></a></div>"
+var projects_section = "<div id='choose'><h2>Choose one:</h2></div>                                                                 \
+     <div id='title'><a id='spacex' onclick='changeSection(\"spacex\");' href='javascript:void(0);'><center><h1><strong>SpaceX      \
+        </strong></h1></center></a></div>                                                                                           \
+     <div id='title'><a id='marsrover' onclick='changeSection(\"marsrover\");' href='javascript:void(0);'><center><h1><strong>OSU   \
+        Mars Rover Team</strong></h1></center></a></div>                                                                            \
+     <div id='title'><a id='penny4nasa' onclick='changeSection(\"penny4nasa\");' href='javascript:void(0);'><center><h1><strong>    \
+        Advocates for Space Exploration / Penny4NASA</strong></h1></center></a></div>"
 
     var projects_section_spacex = "<div id='title'><center><h1><strong>SpaceX</strong></h1></center></div>                              \
-        <a onclick='changeSection(\"projects\");' href='javascript:void(0);'><h2><< Go Back</h2></a>                                    \
+        <a id='goback_fromspacex' onclick='changeSection(\"projects\");' href='javascript:void(0);'><h2><< Go Back</h2></a>             \
         <div id='pic'><img width='400px' src='images/projects/SpaceX.jpg'><br>                                                          \
             <img width='400px' src='images/projects/SpaceX1.jpg'><br>                                                                       \
             <img width='400px' src='images/projects/SpaceX2.jpg'><br>                                                                       \
@@ -183,12 +182,12 @@ var projects_section = "<div id='choose'><h2>Choose one:</h2></div>             
             and implemented an onboard Django-based server for controlling and reviewing tests in real-time.</p>                            \
             <p>The majority of this work was done in Python, with smaller portions being completed in HTML and                              \
             JavaScript.</p>                                                                                                                 \
-            <p>For more information about SpaceX please <a href='http://www.spacex.com' target='_blank'>           \
-            click here</a></p>                                                                                                              \
+            <p>For more information about SpaceX please <a id='spacex_moreinfo' href='http://www.spacex.com' target='_blank'><u>click here  \
+            </u></a></p>                                                                                                                    \
         </div>"
     
     var projects_section_marsrover = "<div id='title'><center><h1><strong>OSU Mars Rover Team</strong></h1></center></div>              \
-        <a onclick='changeSection(\"projects\");' href='javascript:void(0);'><h2><< Go Back</h2></a>                                    \
+        <a id='goback_frommarsrover' onclick='changeSection(\"projects\");' href='javascript:void(0);'><h2><< Go Back</h2></a>          \
         <div id='pic'><img width='400px' src='images/projects/MarsRover.jpg'><br>                                                       \
             <img width='400px' src='images/projects/MarsRover1.jpg'><br>                                                                    \
             <img width='400px' src='images/projects/MarsRover2.jpg'><br>                                                                    \
@@ -212,13 +211,13 @@ var projects_section = "<div id='choose'><h2>Choose one:</h2></div>             
             <p>We do a multitude of public events to promote our team, our University and of course our sponsors. Our team has several      \
             sponsors, including NASA Oregon Space Grant, Mentor Graphics, National Science Foundation, Sunstone, Garmin, Fastenal, Stevens  \
             Water Sensor Systems, Midwest Motion Products, AJK Precision, Pacific Metal, Xerox, and 3D Connexion.</p>                       \
-            <p>For more information about the OSU Mars Rover Team please <a href='http://groups.engr.oregonstate.edu/osurc/urc/' target='_blank'>           \
-            click here</a></p>                                                                                                              \
+            <p>For more information about the OSU Mars Rover Team please <a id='marsrover_moreinfo'                                         \
+            href='http://groups.engr.oregonstate.edu/osurc/urc/' target='_blank'> <u>click here</u></a></p>                                 \
         </div>"
     
     var projects_section_penny4nasa = "<div id='title'><center><h1><strong>Advocates for Space Exploration / Penny4NASA</strong></h1>       \
                                         </center></div>                                                                                     \
-        <a onclick='changeSection(\"projects\");' href='javascript:void(0);'><h2><< Go Back</h2></a>                                    \
+        <a id='goback_frompenny4nasa' onclick='changeSection(\"projects\");' href='javascript:void(0);'><h2><< Go Back</h2></a>             \
         <div id='pic'><img width='400px' src='images/projects/Penny4NASA.png'><br>                                                      \
             <img width='400px' src='images/projects/Penny4NASA1.jpg'><br>                                                                   \
             <img width='400px' src='images/projects/Penny4NASA2.jpg'><br><br>                                                               \
@@ -240,12 +239,12 @@ var projects_section = "<div id='choose'><h2>Choose one:</h2></div>             
             <p>I manage team of 20 permanent volunteers within this organization, which operates largely online using a website, social     \
             media presence, government relations, and media relations, as well as taking monetary donations. To date the organization has   \
             raised upwards of $5000 non-taxdeductible donations which has enabled the improvement of every aspect of the organization.</p>  \
-            <p>For more information about Advocates for Space Exploration / Penny4NASA please <a href='http://www.penny4nasa.org' target='_blank'>           \
-            click here</a></p>                                                                                                              \
+            <p>For more information about Advocates for Space Exploration / Penny4NASA please <a id='penny4nasa_moreinfo'                   \
+            href='http://www.penny4nasa.org' target='_blank'> <u>click here</u></a></p>                                                     \
         </div>"
     
-var contact_section = "<div id='pic'><img height='50%' src='images/JohnZeller1.jpg'></div>                                           \
+var contact_section = "<div id='pic'><img height='50%' src='images/JohnZeller1.jpg'></div>                                          \
     <div id='info'><p>If you are interested in contacting me, you can find me via any of the links below to Facebook, Twitter,      \
     Google+ or Github.</p>                                                                                                          \
-    <p>Perhaps the most effective means of contacting me though is by email >> <a href='mailto:johnlzeller@gmail.com'>              \
+    <p>Perhaps the most effective means of contacting me though is by email >> <a id='email' href='mailto:johnlzeller@gmail.com'>   \
     johnlzeller@gmail.com</a></p></div>"
