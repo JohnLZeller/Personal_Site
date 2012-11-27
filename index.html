@@ -19,6 +19,21 @@
     
     <script src="js/temp.js" type="text/javascript"></script>
 
+    <!-- Google Analytics Tracking Script -->
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        var pluginUrl = 
+        '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+       _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+        _gaq.push(['_setAccount', 'UA-36612533-1']);
+        _gaq.push(['_trackPageview']);
+    
+        (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
 </head>
 
 <body onload="onStart();">
@@ -27,18 +42,24 @@
         <div id="title"><span id="title_section"></span></div>
         
         <div id="altnav">
-            <img onmouseover="changeIcon(this, 'about', 'on');"
-                 onmouseout="changeIcon(this, 'about', 'off');"
-                 onclick="changeSection('about');"
-                 height="100px" src="images/nav/About.png">
-            <img onmouseover="changeIcon(this, 'projects', 'on');"
-                 onmouseout="changeIcon(this, 'projects', 'off');"
-                 onclick="changeSection('projects');"
-                 height="100px" src="images/nav/Projects.png">
-            <img onmouseover="changeIcon(this, 'contact', 'on');"
-                 onmouseout="changeIcon(this, 'contact', 'off');"
-                 onclick="changeSection('contact');"
-                 height="100px" src="images/nav/Contact.png">
+            <a id="about">
+                <img onmouseover="changeIcon(this, 'about', 'on');"
+                     onmouseout="changeIcon(this, 'about', 'off');"
+                     onclick="changeSection('about');"
+                     height="100px" src="images/nav/About.png">
+            </a>
+            <a id="projects">
+                <img onmouseover="changeIcon(this, 'projects', 'on');"
+                     onmouseout="changeIcon(this, 'projects', 'off');"
+                     onclick="changeSection('projects');"
+                     height="100px" src="images/nav/Projects.png">
+            </a>
+            <a id="contact">
+                <img onmouseover="changeIcon(this, 'contact', 'on');"
+                     onmouseout="changeIcon(this, 'contact', 'off');"
+                     onclick="changeSection('contact');"
+                     height="100px" src="images/nav/Contact.png">
+            </a>
         </div>
     </div>
     
@@ -50,31 +71,31 @@
     </div>
     
     <div id="footer">
-       <a href="http://www.facebook.com/JohnLukeZeller" target="_blank">
+       <a id="facebook" href="http://www.facebook.com/JohnLukeZeller" target="_blank">
             <img onmouseover="changeIcon(this, 'fb', 'on');"
                  onmouseout="changeIcon(this, 'fb', 'off');" 
                  onclick="changeIcon(this, 'fb', 'click');"
                  height="70px" src="images/icons/fb.png">
        </a>
-       <a href="http://www.twitter.com/JohnLukeZeller" target="_blank">
+       <a id="twitter" href="http://www.twitter.com/JohnLukeZeller" target="_blank">
             <img onmouseover="changeIcon(this, 'tw', 'on');"
                  onmouseout="changeIcon(this, 'tw', 'off');" 
                  onclick="changeIcon(this, 'tw', 'click');"
                  height="70px" src="images/icons/tw.png">
        </a>
-       <a href="https://plus.google.com/109697196852908178819/posts" target="_blank">
+       <a id="google-plus" href="https://plus.google.com/109697196852908178819/posts" target="_blank">
             <img onmouseover="changeIcon(this, 'gp', 'on');"
                  onmouseout="changeIcon(this, 'gp', 'off');" 
                  onclick="changeIcon(this, 'gp', 'click');"
                  height="70px" src="images/icons/gp.png">
        </a>
-       <a href="http://www.github.com/JohnLZeller" target="_blank">
+       <a id="github" href="http://www.github.com/JohnLZeller" target="_blank">
             <img onmouseover="changeIcon(this, 'git', 'on');"
                  onmouseout="changeIcon(this, 'git', 'off');" 
                  onclick="changeIcon(this, 'git', 'click');"
                  height="70px" src="images/icons/git.png">
        </a>
-       <a href="http://www.johnzeller.com/ZellerJohnResume.pdf" target="_blank">
+       <a id="resume" href="http://www.johnzeller.com/ZellerJohnResume.pdf" target="_blank">
             <img onmouseover="changeIcon(this, 'rs', 'on');"
                  onmouseout="changeIcon(this, 'rs', 'off');" 
                  onclick="changeIcon(this, 'rs', 'click');"
