@@ -1,3 +1,14 @@
+/* ===============================================================
+ * Filename: style.css
+ * Author: John Zeller
+ * Date Created: November 21, 2012
+ * Recently Updated: November 26, 2012
+ * ------
+ * Notes:
+ * =============================================================*/
+
+
+/* ==================== TYPOGRAPHY ==================== */
 html, body {
 	margin: 0;
 	padding-left: 5%;
@@ -22,6 +33,7 @@ a:link, a:visited, a:hover, a:active {	/* unvisited, visited, mouse over and sel
 	text-decoration: none;
 }
 
+/* ====================== LAYOUT ====================== */
 #main-nav {
 	background: #e3dbdb;
 	position: fixed;
@@ -76,7 +88,6 @@ a:link, a:visited, a:hover, a:active {	/* unvisited, visited, mouse over and sel
 
 	#badge {
 		display: block;
-		
 		/*set the div in the center of the screen*/
 		position: absolute;
 		top: 20%;

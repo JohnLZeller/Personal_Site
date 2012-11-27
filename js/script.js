@@ -1,18 +1,27 @@
-/* JAVASCRIPT FUNCTIONS */
+/* ===============================================================
+ * Filename: script.js
+ * Author: John Zeller
+ * Date Created: November 21, 2012
+ * Recently Updated: November 26, 2012
+ * ------
+ * Notes:
+ * =============================================================*/
 
-var badge_off = "<img src='images/badge.png' height ='244px' alt='hi, my name is JOHN'>";
-var badge_on = "<img src='images/badge-f.png' height ='244px' alt='hi, my name is JOHN'>";
+// JAVASCRIPT FUNCTIONS
+
+var badge_off = "<img src='images/badge.png' height ='244px' alt='hi, my name is JOHN ZELLER and I am a Software Engineer'>";
+var badge_on = "<img src='images/badge-f.png' height ='244px' alt='hi, my name is JOHN ZELLER and I am a Software Engineer'>";
 
 function onStart(){
-    badge_span.innerHTML = badge_off;               /* Initializes the badge */
-    intervalID1 = setInterval("changeBadge()",800); /* Starts cycle that changes the badge every 0.8 seconds */
+    badge_span.innerHTML = badge_off;               // Initializes the badge
+    intervalID1 = setInterval("changeBadge()",800); // Starts cycle that changes the badge every 0.8 seconds
 }
 
 function changeBadge(){
-    /* Uses badge_span.innerHTML to keep state */
-    if(badge_span.innerHTML.substring(17,26)=="badge.png"){         /* If badge was off */
+    // Uses badge_span.innerHTML to keep state
+    if(badge_span.innerHTML.substring(17,26)=="badge.png"){         // If badge was off
         badge_span.innerHTML = badge_on;
-    }else if(badge_span.innerHTML.substring(17,26)=="badge-f.p"){   /* If badge was on */
+    }else if(badge_span.innerHTML.substring(17,26)=="badge-f.p"){   // If badge was on
         badge_span.innerHTML = badge_off;
     }
 }
@@ -126,7 +135,7 @@ function changeSection(choice){
 
 
 
-/* Below is all of the possible html sections, neatly stored away from js functions */
+// HTML SPAN CONTENT SECTIONS
 
 var home_section = "<div id='badge'><span id='badge_span'></span></div>"
 
