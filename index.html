@@ -52,6 +52,16 @@
                 $('#badge').fadeOut('slow');
             }
         });
+
+        function yes(){
+            $('#sidebar, #main-nav, #footer').fadeIn('slow');
+            $('#badge').fadeOut('slow');
+        }
+        function no(){
+            alert("WARNING: User could not detect rhetorical question. Overriding user...");
+            $('#sidebar, #main-nav, #footer').fadeIn('slow');
+            $('#badge').fadeOut('slow');
+        }
     </script>
 </head>
 
@@ -69,18 +79,19 @@
     </div>
 
     <div id="sidebar">
-        > Education<br><br>
-        > Experience<br><br>
-        > Projects<br><br>
-        > Skills<br><br>
-        > Leadership & Community Service<br>
+        > <a href="education.html">Education</a><br><br>
+        > <a href="experience.html">Experience</a><br><br>
+        > <a href="projects.html">Projects</a><br><br>
+        > <a href="skills.html">Skills</a><br><br>
+        > <a href="community.html">Leadership & <br>> Community <br>> Service</a><br>
     </div>
     
     <div id="content">
         <div id="badge">
             <div class="typingone">>> hi, my name is JOHN ZELLER<br></div>
             <div class="typingtwo">>> i am a Software Developer<br></div>
-            <div class="typingthree">>> to continue press y or n<span class="blink">|</span><br></div>
+            <div class="typingthree">>> to continue press <a onclick="yes();" href="#">y</a> or 
+                <a onclick="no();" href="#">n</a><span class="blink">|</span><br></div>
         </div>
     </div>
     
