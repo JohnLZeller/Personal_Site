@@ -4,8 +4,8 @@
  * Filename: index.html
  * Author: John Zeller
  * Date Created: November 21, 2012
- * Recently Updated: November 27, 2012
- * ------
+ * Recently Updated: October 7, 2013
+ * 
  * Notes/To Do:
  *        * Make git/resume quality res for fb, tw gp
  * =============================================================-->
@@ -13,7 +13,7 @@
 <html>
 
 <head>
-    <title>John Zeller | Software Engineer</title>
+    <title>John Zeller | Software Developer</title>
     
     <!-- Meta-Tag Search Engines -->
     <meta name="John Zeller" content="John is a passionate Science and Technology nerd from Portland, Oregon. This website serves as a may for you to learn more about him.">
@@ -43,35 +43,22 @@
 <body onload="onStart();">
     
     <div id="main-nav">
-        <div id="title"><span id="title_section"></span></div>
+        <div id="title">
+            <a href="index.html">JOHN ZELLER: {Software Developer}</a>
+        </div>
         
-        <div id="altnav">
-            <a id="about">
-                <img onmouseover="changeIcon(this, 'about', 'on');"
-                     onmouseout="changeIcon(this, 'about', 'off');"
-                     onclick="changeSection('about');"
-                     height="100px" src="images/nav/About.png">
-            </a>
-            <a id="projects">
-                <img onmouseover="changeIcon(this, 'projects', 'on');"
-                     onmouseout="changeIcon(this, 'projects', 'off');"
-                     onclick="changeSection('projects');"
-                     height="100px" src="images/nav/Projects.png">
-            </a>
-            <a id="contact">
-                <img onmouseover="changeIcon(this, 'contact', 'on');"
-                     onmouseout="changeIcon(this, 'contact', 'off');"
-                     onclick="changeSection('contact');"
-                     height="100px" src="images/nav/Contact.png">
-            </a>
+        <div id="nav">
+            <div id="about"><a href="about.html">About</a></div>
+            <div id="contact"><a href="contact.html">Contact</a></div>
         </div>
     </div>
     
     <div id="content">
-        <span id="content_section">
-            <div id="badgeone"><span id="badge_span_one"></span></div>
-            <div id="badgetwo"><span id="badge_span_two"></span></div>
-        </span>
+        <div id="badge">
+            >> hi, my name is JOHN ZELLER<br>
+            >> i am a Software Developer<br>
+            >> <span class="blink">|</span><br>
+        </div>
     </div>
     
     <div id="footer">

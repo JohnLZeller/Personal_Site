@@ -6,7 +6,8 @@
  * ------
  * Notes:
  * =============================================================*/
-
+@import url(http://fonts.googleapis.com/css?family=VT323);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
 
 /* ==================== TYPOGRAPHY ==================== */
 html, body {
@@ -19,7 +20,7 @@ html, body {
 }
 
 p {
-	font-family:"Courier New", Courier, monospace;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 18px;
 	color: #000000;
 }
@@ -33,21 +34,79 @@ a:link, a:visited, a:hover, a:active {	/* unvisited, visited, mouse over and sel
 	text-decoration: none;
 }
 
+/* ==================== DECORATION ==================== */
+.blink {
+    animation-name: blinker;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+}
+
+@-moz-keyframes blinker {  /* Decimal not necessary, 0 and 1 is enough */
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+@keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
 /* ====================== LAYOUT ====================== */
 #main-nav {
-	background: #e3dbdb;
 	position: fixed;
 	height: auto;
 	width: 81%;
+	font-size: 20px;
+	font-weight: bold;
+	color: black;
+	font-family: Helvetica, Arial, sans-serif;
 }
 
-	#main-nav #altnav {
+	#main-nav #nav {
 		float: right;
 		text-align: right;
+		padding:15px 30px;
+		width: 250px;
+		margin: 0 auto;
+		font-size: 30px;
 	}
+
+		#main-nav #nav #about{
+			margin-right: 150px;
+			margin-top: 20px;
+			clear: both;
+		}
+
+		#main-nav #nav #contact{
+			margin-top: -30px;
+			clear: both;
+		}
+
+		#main-nav #nav #about a:hover{
+			color: red;
+		}
+
+		#main-nav #nav #contact a:hover{
+			color: blue;
+		}
 	
 	#main-nav #title {
 		padding-top: 40px;
+		font-weight: bold;
 		float: left;
 		text-align: left;
 	}
@@ -59,6 +118,17 @@ a:link, a:visited, a:hover, a:active {	/* unvisited, visited, mouse over and sel
 	text-align: center;
 }
 
+	#content #badge{
+		padding: 15px 30px;
+		padding-top: 77px;
+		width: 500px;
+		margin: 0 auto;
+		font-size: 35px;
+		font-weight: bold;
+		text-align: left;
+		color: black;
+		font-family: 'VT323', cursive;
+	}
 
 	#content #title{
 		clear: both;
