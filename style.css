@@ -222,7 +222,6 @@ a:link, a:visited, a:hover, a:active {	/* unvisited, visited, mouse over and sel
 		text-align: left;
 		padding-bottom: 20%; /* So footer never blocks bottom of content */
 	}
-	
 
 #footer {
 	display: none;
