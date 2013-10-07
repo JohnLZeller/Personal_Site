@@ -121,9 +121,9 @@ a:link, a:visited, a:hover, a:active {	/* unvisited, visited, mouse over and sel
 	#content #badge{
 		padding: 15px 30px;
 		padding-top: 77px;
-		width: 500px;
+		width: 600px;
 		margin: 0 auto;
-		font-size: 35px;
+		font-size: 45px;
 		font-weight: bold;
 		text-align: left;
 		color: black;
@@ -162,28 +162,6 @@ a:link, a:visited, a:hover, a:active {	/* unvisited, visited, mouse over and sel
 		height: auto;
 		text-align: left;
 		padding-bottom: 20%; /* So footer never blocks bottom of content */
-	}
-	
-
-	#badgeone {
-		visibility: visible;
-		display: block;
-		/*set the div in the center of the screen*/
-		position: absolute;
-		top: 20%;
-		left: 20%;
-		height: 244px;
-		width: auto;
-	}
-	
-	#badgetwo {
-		visibility: hidden;
-		display: block;
-		/*set the div in the center of the screen*/
-		position: absolute;
-		top: 20%;
-		left: 20%;
-		width: auto;
 	}
 	
 
