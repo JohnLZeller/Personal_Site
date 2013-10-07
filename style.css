@@ -65,8 +65,51 @@ a:link, a:visited, a:hover, a:active {	/* unvisited, visited, mouse over and sel
     100% { opacity: 1.0; }
 }
 
+#content #badge .typingone {
+	opacity:0.7;
+	white-space:nowrap;
+    overflow:hidden;
+    -webkit-animation: typing 1s steps(29, end), step-end 1s;
+    -moz-animation: typing 1s steps(29, end), step-end 1s;
+}
+
+#content #badge .typingtwo {
+	opacity:0.7;
+	white-space:nowrap;
+    overflow:hidden;
+    -webkit-animation: typing 1s steps(29, end), step-end infinite;
+    -webkit-animation-delay: 2s;
+    -webkit-animation-fill-mode:both;
+    -moz-animation: typing 1s steps(29, end), step-end infinite;
+    -moz-animation-delay: 2s;
+    -moz-animation-fill-mode:both;
+}
+
+#content #badge .typingthree {
+	opacity:0.7;
+	white-space:nowrap;
+    overflow:hidden;
+    -webkit-animation: typing 1s steps(29, end), step-end infinite;
+    -webkit-animation-delay: 3s;
+    -webkit-animation-fill-mode:both;
+    -moz-animation: typing 1s steps(29, end), step-end infinite;
+    -moz-animation-delay: 3s;
+    -moz-animation-fill-mode:both;
+}
+
+@-webkit-keyframes typing {
+    from { width: 0; }
+    to { width: 570px; }
+}
+
+@-moz-keyframes typing {
+    from { width: 0; }
+    to { width: 570px; }
+}
+
 /* ====================== LAYOUT ====================== */
 #main-nav {
+	display: none;
 	position: fixed;
 	height: auto;
 	width: 81%;
@@ -111,6 +154,22 @@ a:link, a:visited, a:hover, a:active {	/* unvisited, visited, mouse over and sel
 		text-align: left;
 	}
 
+#sidebar {
+	display: none;
+	clear: both;
+	position: fixed;
+	height: 90%;
+	width: 10%;
+	padding: 20px;
+	left: 0px;
+	top: 20%;
+	text-align: left;
+	font-size: 15px;
+	font-weight: bold;
+	color: black;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
 #content {
 	width: 80%;
 	padding: 10%;
@@ -121,7 +180,7 @@ a:link, a:visited, a:hover, a:active {	/* unvisited, visited, mouse over and sel
 	#content #badge{
 		padding: 15px 30px;
 		padding-top: 77px;
-		width: 600px;
+		width: 570px;
 		margin: 0 auto;
 		font-size: 45px;
 		font-weight: bold;
@@ -166,8 +225,8 @@ a:link, a:visited, a:hover, a:active {	/* unvisited, visited, mouse over and sel
 	
 
 #footer {
+	display: none;
 	background:  #e3dbdb;
-	display: block;
 	clear: both;
 	position: fixed;
 	bottom: 0px;

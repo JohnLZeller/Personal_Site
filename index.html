@@ -21,6 +21,7 @@
 
     <!-- Style.css and Script.js -->
     <link rel="stylesheet" type="text/css" href="style.css"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="js/script.js" type="text/javascript"></script>
 
     <!-- Google Analytics Tracking Script -->
@@ -38,6 +39,20 @@
                 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
     </script>
+
+    <!-- Adding some key stroke functionality -->
+    <script type="text/javascript">
+        $(window).keyup(function(event){
+            if (event.keyCode == 89){
+                $('#sidebar, #main-nav, #footer').fadeIn('slow');
+                $('#badge').fadeOut('slow');
+            }else if (event.keyCode == 78){
+                alert("WARNING: User could not detect rhetorical question. Overriding user...");
+                $('#sidebar, #main-nav, #footer').fadeIn('slow');
+                $('#badge').fadeOut('slow');
+            }
+        });
+    </script>
 </head>
 
 <body onload="onStart();">
@@ -52,12 +67,20 @@
             <div id="contact"><a href="contact.html">Contact</a></div>
         </div>
     </div>
+
+    <div id="sidebar">
+        > Education<br><br>
+        > Experience<br><br>
+        > Projects<br><br>
+        > Skills<br><br>
+        > Leadership & Community Service<br>
+    </div>
     
     <div id="content">
         <div id="badge">
-            >> hi, my name is JOHN ZELLER<br>
-            >> i am a Software Developer<br>
-            >> <span class="blink">|</span><br>
+            <div class="typingone">>> hi, my name is JOHN ZELLER<br></div>
+            <div class="typingtwo">>> i am a Software Developer<br></div>
+            <div class="typingthree">>> to continue press y or n<span class="blink">|</span><br></div>
         </div>
     </div>
     
