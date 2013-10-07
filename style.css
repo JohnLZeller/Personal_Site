@@ -65,7 +65,7 @@ a:link, a:visited, a:hover, a:active {	/* unvisited, visited, mouse over and sel
     100% { opacity: 1.0; }
 }
 
-#content #badge .typingone {
+#content-wrapper #badge .typingone {
 	opacity:0.7;
 	white-space:nowrap;
     overflow:hidden;
@@ -73,7 +73,7 @@ a:link, a:visited, a:hover, a:active {	/* unvisited, visited, mouse over and sel
     -moz-animation: typing 1s steps(29, end), step-end 1s;
 }
 
-#content #badge .typingtwo {
+#content-wrapper #badge .typingtwo {
 	opacity:0.7;
 	white-space:nowrap;
     overflow:hidden;
@@ -85,7 +85,7 @@ a:link, a:visited, a:hover, a:active {	/* unvisited, visited, mouse over and sel
     -moz-animation-fill-mode:both;
 }
 
-#content #badge .typingthree {
+#content-wrapper #badge .typingthree {
 	opacity:0.7;
 	white-space:nowrap;
     overflow:hidden;
@@ -170,14 +170,14 @@ a:link, a:visited, a:hover, a:active {	/* unvisited, visited, mouse over and sel
 	font-family: Helvetica, Arial, sans-serif;
 }
 
-#content {
+#content-wrapper {
 	width: 80%;
 	padding: 10%;
 	height: auto;
 	text-align: center;
 }
 
-	#content #badge{
+	#content-wrapper #badge{
 		padding: 15px 30px;
 		padding-top: 77px;
 		width: 570px;
@@ -189,14 +189,24 @@ a:link, a:visited, a:hover, a:active {	/* unvisited, visited, mouse over and sel
 		font-family: 'VT323', cursive;
 	}
 
-	#content #title{
+	#content-wrapper #content{
+		display: none;
+		clear: both;
+		float: left;
+		width: auto;
+		padding: 20px;
+		height: auto;
+		padding-bottom: 10%; /* So footer never blocks bottom of content */
+	}
+
+	#content-wrapper #title{
 		clear: both;
 		float: left;
 		width: 100%;
 		height: auto;
 	}
 	
-	#content #pic{
+	#content-wrapper #pic{
 		clear: both;
 		float: left;
 		width: auto;
@@ -205,7 +215,7 @@ a:link, a:visited, a:hover, a:active {	/* unvisited, visited, mouse over and sel
 		padding-bottom: 20%; /* So footer never blocks bottom of content */
 	}
 	
-	#content #choose{
+	#content-wrapper #choose{
 		clear: both;
 		float: left;
 		width: auto;
@@ -214,7 +224,7 @@ a:link, a:visited, a:hover, a:active {	/* unvisited, visited, mouse over and sel
 		padding-bottom: 10%; /* So footer never blocks bottom of content */
 	}
 	
-	#content #info{	
+	#content-wrapper #info{	
 		float: right;
 		width: 40%;
 		padding: 20px;
