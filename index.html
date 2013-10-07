@@ -42,14 +42,17 @@
 
     <!-- Adding some key stroke functionality -->
     <script type="text/javascript">
+        var intro = true;
         $(window).keyup(function(event){
-            if (event.keyCode == 89){
+            if ((event.keyCode == 89) && (intro == true)){
                 $('#sidebar, #main-nav, #footer').fadeIn('slow');
                 $('#badge').fadeOut('slow');
-            }else if (event.keyCode == 78){
+                intro = false;
+            }else if ((event.keyCode == 78) && (intro == true)){
                 alert("WARNING: User could not detect rhetorical question. Overriding user...");
                 $('#sidebar, #main-nav, #footer').fadeIn('slow');
                 $('#badge').fadeOut('slow');
+                intro = false;
             }
         });
 
