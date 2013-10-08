@@ -128,22 +128,22 @@ a:link, a:visited, a:hover, a:active {	/* unvisited, visited, mouse over and sel
 		font-size: 30px;
 	}
 
-		#main-nav #nav #about{
+		#main-nav #nav a.about{
+			display: block;
 			margin-right: 150px;
 			margin-top: 20px;
-			clear: both;
 		}
 
-		#main-nav #nav #contact{
+		#main-nav #nav a.contact{
+			display: block;
 			margin-top: -30px;
-			clear: both;
 		}
 
-		#main-nav #nav #about a:hover{
+		#main-nav #nav a.about:hover{
 			color: red;
 		}
 
-		#main-nav #nav #contact a:hover{
+		#main-nav #nav a.contact:hover{
 			color: blue;
 		}
 	
@@ -159,7 +159,7 @@ a:link, a:visited, a:hover, a:active {	/* unvisited, visited, mouse over and sel
 	clear: both;
 	position: fixed;
 	height: 90%;
-	width: 10%;
+	width: 150px;
 	padding: 20px;
 	left: 0px;
 	top: 20%;
