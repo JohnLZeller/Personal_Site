@@ -89,6 +89,12 @@ a:link, a:visited, a:hover, a:active {	/* unvisited, visited, mouse over and sel
 	text-decoration: none;
 }
 
+a.anchor{
+	display: block;
+	position: relative;
+	top: -120px;
+}
+
 /* ==================== DECORATION ==================== */
 .blink {
     animation-name: blinker;
@@ -166,7 +172,7 @@ a:link, a:visited, a:hover, a:active {	/* unvisited, visited, mouse over and sel
 #main-nav {
 	background:  #e3dbdb;
 	position: fixed;
-	height: auto;
+	height: 100px;
 	width: 81%;
 	font-size: 20px;
 	font-weight: bold;
