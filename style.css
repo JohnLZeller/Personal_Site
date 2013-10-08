@@ -23,10 +23,65 @@ p {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 18px;
 	color: #000000;
+	text-align: left;
+}
+
+table {
+	width: 300px;
+	padding: 0;
+	margin: 0;
+}
+
+tr {
+	margin: 0;
+	padding: 0;
+}
+
+td {
+	padding: 5px;
+	clear: left;
+	margin: 0;
+}
+
+form {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+input {
+	font-family: Arial;
+	font-size: 14px;
+	color: #000000;
+	border: 1px solid #000000;
+	padding: 2px;
+}
+
+input.button {
+	font-family: ;
+	font-size: ;
+	color: ;
+	background-color: ;
+	border:  solid ;
+	padding: 2px;
+}
+
+label {
+	float: left;
+	width: 30%;
+	padding-top: 4px;
+	font-family: Arial;
+	color: #000000;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+img {
+	max-width: 250px;
 }
 
 h2 {
-	text-align: left;
+	text-align: center;
 }
 
 a:link, a:visited, a:hover, a:active {	/* unvisited, visited, mouse over and selected links */
@@ -109,7 +164,7 @@ a:link, a:visited, a:hover, a:active {	/* unvisited, visited, mouse over and sel
 
 /* ====================== LAYOUT ====================== */
 #main-nav {
-	display: none;
+	background:  #e3dbdb;
 	position: fixed;
 	height: auto;
 	width: 81%;
@@ -155,7 +210,7 @@ a:link, a:visited, a:hover, a:active {	/* unvisited, visited, mouse over and sel
 	}
 
 #sidebar {
-	display: none;
+	background:  #e3dbdb;
 	clear: both;
 	position: fixed;
 	height: 90%;
@@ -210,14 +265,19 @@ a:link, a:visited, a:hover, a:active {	/* unvisited, visited, mouse over and sel
 	}
 
 	#content-wrapper #content{
-		display: none;
 		clear: both;
 		float: left;
-		width: auto;
+		width: 90%;
 		padding: 20px;
 		height: auto;
 		padding-bottom: 10%; /* So footer never blocks bottom of content */
 	}
+
+		#content-wrapper #content #contact{
+			padding-left: 30%;
+			font-weight: bold;
+			text-align: left;
+		}
 
 	#content-wrapper #title{
 		clear: both;
@@ -254,7 +314,6 @@ a:link, a:visited, a:hover, a:active {	/* unvisited, visited, mouse over and sel
 	}
 
 #footer {
-	display: none;
 	background:  #e3dbdb;
 	clear: both;
 	position: fixed;
