@@ -170,6 +170,26 @@ a:link, a:visited, a:hover, a:active {	/* unvisited, visited, mouse over and sel
 	font-family: Helvetica, Arial, sans-serif;
 }
 
+	#sidebar a.education:hover{
+		color: red;
+	}
+
+	#sidebar a.experience:hover{
+		color: blue;
+	}
+
+	#sidebar a.projects:hover{
+		color: orange;
+	}
+
+	#sidebar a.skills:hover{
+		color: purple;
+	}
+
+	#sidebar a.community:hover{
+		color: green;
+	}
+
 #content-wrapper {
 	width: 80%;
 	padding: 10%;
