@@ -43,6 +43,15 @@ function changeIcon(element, icon, on_off){
                 element.src="images/icons/gp-c.png"
             }
             break;
+        case "linkedin":
+            if(on_off=="on"){
+                element.src="images/icons/linkedin.png"
+            }else if(on_off=="off"){
+                element.src="images/icons/linkedin.png"
+            }else if(on_off=="click"){
+                element.src="images/icons/linkedin.png"
+            }
+            break;
         case "git":
             if(on_off=="on"){
                 element.src="images/icons/git-h.png"
