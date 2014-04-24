@@ -12,11 +12,11 @@ python
 
 # To Do
 * Pull in commit history
-** Github
-** Mozilla
-** etc?
+	* Github
+	* Mozilla
+	* etc?
 * Install Ghost
-** Export Wordpress work blog to Ghost
+	* Export Wordpress work blog to Ghost
 * Personal Blog and work blog?
 
 # Useful Development Tools
