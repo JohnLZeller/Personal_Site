@@ -1,0 +1,443 @@
+/* ===============================================================
+ * Filename: style.css
+ * Author: John Zeller
+ * Date Created: January 7, 2014
+ * Recently Updated: January 7, 2014
+ * ------
+ * Notes:
+ * =============================================================*/
+
+html{min-height:100%;position:relative}/* make sure it is at least as tall as the viewport */
+body{height:100%}
+
+.title {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+}
+
+/* ==================== TYPOGRAPHY ==================== */
+.signup_form_wrapper {
+	padding-top: 20px;
+}
+
+/* ====================== LAYOUT ====================== */
+.navbar-menu {
+	margin-right: 20px;
+}
+
+.persona-logout-button {
+	margin-left: 15px;
+	background: transparent;
+	border: none;
+}
+
+.hide-button {
+	background: transparent;
+	border: none;
+	color: #999999;
+}
+
+.hide-button:hover {
+	background: transparent;
+	border: none;
+	color: #999999;
+}
+
+.cog {
+	margin-right: 10px;
+}
+
+.social_icons {
+	height: 35px;
+	width: 35px;
+}
+
+.dashboard {
+	padding-top: 20px;
+	padding-left: 42px;
+	padding-right: 42px;
+    display: table;
+    width: 100%;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.dashboard-row {
+    height: 100%;
+    display: table-row;
+}
+
+.dashboard-menu {
+	color: black;
+	padding: 0px;
+	border-radius: 0px;
+    display: table;
+    margin-top: 30px;
+}
+
+.dashboard-menu a {
+	color: black;
+}
+
+.dashboard-menu-button {
+	background: transparent;
+	border: none;
+	font-size: 12pt;
+	line-height: 1.5;
+	padding: 10px;
+	border-radius: 0px;
+    display: table-row;
+}
+
+.dashboard-menu-button:hover {
+	background: transparent;
+	border: none;
+	font-size: 12pt;
+	line-height: 1.5;
+	padding: 10px;
+	background: #999999;
+	text-decoration: none;
+    display: table-row;
+}
+
+.congress-icon {
+	color: white;
+	font-size: 20px;
+	text-align: center;
+	font-weight: bold;
+}
+
+.timeline-container {
+	padding-top: 30px;
+}
+
+.timeline-border {
+	border-left: 2px solid #000;
+	border-right: 2px solid #000;
+}
+
+.timeline-labels button {
+	width: 100px;
+	height: 30px;
+	margin-bottom: 30px;
+}
+
+.timeline {
+    list-style: none;
+    padding: 20px 0 20px;
+    position: relative;
+}
+
+    .timeline:before {
+        top: 0;
+        bottom: 0;
+        position: absolute;
+        content: " ";
+        width: 3px;
+        background-color: #eeeeee;
+        left: 5%;
+        margin-left: -1.5px;
+    }
+
+    .timeline > li {
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+        .timeline > li:before,
+        .timeline > li:after {
+            content: " ";
+            display: table;
+        }
+
+        .timeline > li:after {
+            clear: both;
+        }
+
+        .timeline > li:before,
+        .timeline > li:after {
+            content: " ";
+            display: table;
+        }
+
+        .timeline > li:after {
+            clear: both;
+        }
+
+        .timeline > li > .timeline-panel {
+            width: 85%;
+            margin-right: 2%;
+            float: left;
+            border: 1px solid #d4d4d4;
+            border-radius: 2px;
+            padding: 20px;
+            position: relative;
+            -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+        }
+
+            .timeline > li > .timeline-panel:before {
+                position: absolute;
+                top: 26px;
+                right: -15px;
+                display: inline-block;
+                border-top: 15px solid transparent;
+                border-left: 15px solid #ccc;
+                border-right: 0 solid #ccc;
+                border-bottom: 15px solid transparent;
+                content: " ";
+            }
+
+            .timeline > li > .timeline-panel:after {
+                position: absolute;
+                top: 27px;
+                right: -14px;
+                display: inline-block;
+                border-top: 14px solid transparent;
+                border-left: 14px solid #fff;
+                border-right: 0 solid #fff;
+                border-bottom: 14px solid transparent;
+                content: " ";
+            }
+
+        .timeline > li > .timeline-badge {
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            font-size: 1.4em;
+            text-align: center;
+            position: absolute;
+            top: 16px;
+            left: 5%;
+            margin-left: -25px;
+            background-color: #999999;
+            z-index: 100;
+            border-top-right-radius: 50%;
+            border-top-left-radius: 50%;
+            border-bottom-right-radius: 50%;
+            border-bottom-left-radius: 50%;
+        }
+
+        .timeline > li.timeline-inverted > .timeline-panel {
+            float: right;
+        }
+
+            .timeline > li.timeline-inverted > .timeline-panel:before {
+                border-left-width: 0;
+                border-right-width: 15px;
+                left: -15px;
+                right: auto;
+            }
+
+            .timeline > li.timeline-inverted > .timeline-panel:after {
+                border-left-width: 0;
+                border-right-width: 14px;
+                left: -14px;
+                right: auto;
+            }
+
+.timeline-badge.primary {
+    background-color: #2e6da4 !important;
+}
+
+.timeline-badge.success {
+    background-color: #3f903f !important;
+}
+
+.timeline-badge.warning {
+    background-color: #f0ad4e !important;
+}
+
+.timeline-badge.danger {
+    background-color: #d9534f !important;
+}
+
+.timeline-badge.info {
+    background-color: #5bc0de !important;
+}
+
+.timeline-title {
+    margin-top: 0;
+    color: inherit;
+}
+
+.timeline-body > p,
+.timeline-body > ul {
+    margin-bottom: 0;
+}
+
+    .timeline-body > p + p {
+        margin-top: 5px;
+    }
+
+@media (max-width: 767px) {
+    ul.timeline:before {
+        left: 40px;
+    }
+
+    ul.timeline > li > .timeline-panel {
+        width: calc(100% - 90px);
+        width: -moz-calc(100% - 90px);
+        width: -webkit-calc(100% - 90px);
+    }
+
+    ul.timeline > li > .timeline-badge {
+        left: 15px;
+        margin-left: 0;
+        top: 16px;
+    }
+
+    ul.timeline > li > .timeline-panel {
+        float: right;
+    }
+
+        ul.timeline > li > .timeline-panel:before {
+            border-left-width: 0;
+            border-right-width: 15px;
+            left: -15px;
+            right: auto;
+        }
+
+        ul.timeline > li > .timeline-panel:after {
+            border-left-width: 0;
+            border-right-width: 14px;
+            left: -14px;
+            right: auto;
+        }
+}
+
+.local-congress {
+	padding-right: 0px;
+    margin-top: 10px;
+}
+
+/* Standard Congress Badge */
+.congress-badge {
+	height: 112px;
+	background: white;
+}
+
+.congress-badge-img {
+	height: 92px;
+    width: 92px;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.congress-badge-img img {
+   min-height: 100%;
+   min-width: 100%;
+
+   /* IE 8 */
+   -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+   /* IE 5-7 */
+   filter: alpha(opacity=0);
+   /* modern browsers */
+   opacity: 0;
+}
+
+.congress-badge h4 {
+	padding-left: 10px;
+}
+
+.congress-badge p {
+	padding-left: 12px;
+}
+
+.congress-badge-info {
+	color: #CCCAC8;
+}
+
+.congress-badge-blue {
+	color: #3F59BF;
+}
+
+.congress-badge-red {
+	color: #CC3B3B;
+}
+
+.congress-badge-compatability {
+	padding-right: 20px;
+	font-size: 40px;
+	font-weight: bold;
+}
+
+/* Small Congress Badge */
+.small-congress-badge {
+	height: 70px;
+	background: white;
+}
+
+.small-congress-badge-img {
+	height: 50px;
+    width: 50px;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.small-congress-badge-img img {
+   min-height: 100%;
+   min-width: 100%;
+
+   /* IE 8 */
+   -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+   /* IE 5-7 */
+   filter: alpha(opacity=0);
+   /* modern browsers */
+   opacity: 0;
+}
+
+.small-congress-badge h5 {
+	padding-left: 10px;
+}
+
+.small-congress-badge p {
+	padding-left: 12px;
+	margin-top: -3px;
+	font-size: 12px;
+}
+
+.small-congress-badge-info {
+	color: #CCCAC8;
+}
+
+.small-congress-badge-blue {
+	color: #3F59BF;
+}
+
+.small-congress-badge-red {
+	color: #CC3B3B;
+}
+
+.small-congress-badge-compatability {
+	padding-right: 5px;
+	font-size: 10px;
+	font-weight: bold;
+}
+
+.tab {
+	padding-left: 5px;
+}
+
+.zipcode {
+	margin-top: -10px;
+	padding: 10px;
+}
+
+.zipcode button{
+	padding: 5px 10px;
+	font-size: 11px;
+	line-height: 1;
+}
+
+.zipcode input{
+  height: 24px;
+  padding: 5px 10px;
+  font-size: 10px;
+  line-height: 1;
+}

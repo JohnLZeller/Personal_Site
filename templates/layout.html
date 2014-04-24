@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+
+<!-- ===============================================================
+ * Filename: layout.html
+ * Author: John Zeller
+ * Date Created: January 7, 2014
+ * Recently Updated: January 7, 2014
+ * ------
+ * Notes:
+ * =============================================================-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+ 
+<title>John Zeller | Software Developer</title>
+
+<!-- Bootstrap core CSS -->
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='../static/css/bootstrap.css') }}">
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='../static/css/style.css') }}">
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='../static/css/persona-buttons.css') }}">
+
+<div class=page>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand title col-xs-9 col-sm-10 col-xs-9" href="/">JOHN ZELLER: {Software Developer}</a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse navbar-menu" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="about">About</a></li>
+      <li><a href="contact">Contact</a></li>
+      <li><a href="blog">Blog</a></li>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</nav>
+
+<div class="jumbotron container-fluid wrap">
+  <div class="row">
+    {% block body %}{% endblock %}
+  </div>
+</div>
+
+
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="../static/js/bootstrap.min.js"></script>
+  <script src="https://login.persona.org/include.js"></script>
+  <script type="text/javascript">{{ auth_script|safe }}</script>
+</div>
+
+
+
+<nav class="navbar-inverse navbar-fixed-bottom container-fluid" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="row">
+    <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1"><img class="img-responsive" src="static/images/fb-h.png"></div>
+    <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1"><img class="img-responsive" src="static/images/tw-h.png"></div>
+    <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1"><img class="img-responsive" src="static/images/gp-h.png"></div>
+    <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2"><img class="img-responsive" src="static/images/git-h.png"></div>
+    <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2"><img class="img-responsive" src="static/images/rs-h.png"a></div>
+  </div>
+</nav>
