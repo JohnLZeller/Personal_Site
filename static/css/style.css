@@ -7,7 +7,7 @@
  * Notes:
  * =============================================================*/
 
-html{min-height:100%;position:relative}/* make sure it is at least as tall as the viewport */
+html{min-height:100%;position:relative;background-color:#EEE;}/* make sure it is at least as tall as the viewport */
 body{height:100%}
 
 .title {
@@ -21,6 +21,14 @@ body{height:100%}
 }
 
 /* ====================== LAYOUT ====================== */
+.about-page {
+    margin-top: 700px;
+}
+
+.experience-page {
+    margin-top: 1400px;
+}
+
 .navbar-menu {
 	margin-right: 20px;
 }
