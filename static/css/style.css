@@ -22,11 +22,19 @@ body{height:100%}
 
 /* ====================== LAYOUT ====================== */
 .about-page {
-    margin-top: 700px;
+    background-color: #D7423C;
 }
 
 .experience-page {
-    margin-top: 1400px;
+    background-color: #2A3642;
+}
+
+.projects-page {
+    background-color: #F0EDE8;
+}
+
+.contact-page {
+    background-color: #333333;
 }
 
 .navbar-menu {
