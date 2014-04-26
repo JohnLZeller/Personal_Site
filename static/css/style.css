@@ -37,8 +37,27 @@ body{height:100%}
     width:100%;
 }
 
-.navbar-buttons-nonmobile {
+.navbar-buttons-desktop {
+    margin-top: -42px;
+    margin-right: -80px;
+}
+
+.navbar-buttons-tablet {
     margin-top: -40px;
+    margin-right: -80px;
+}
+
+.navbar-title-desktop {
+    margin-top: -10px !important;
+}
+
+.navbar-title-tablet {
+    margin-top: -10px !important;
+    margin-left: -30px;
+}
+
+.navbar-title-mobile {
+    margin-left: -30px;
 }
 
 .persona-logout-button {
