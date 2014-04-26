@@ -70,6 +70,30 @@
 	    -moz-animation-fill-mode:both;
 	}
 
+#badge-xs{
+    width: 250px;
+    margin: 45% auto;
+    text-align: left;
+}
+
+    #badge-xs .typingone {
+        white-space:nowrap;
+        overflow:hidden;
+        -webkit-animation: typing 1s steps(29, end), step-end 1s;
+        -moz-animation: typing 1s steps(29, end), step-end 1s;
+    }
+
+    #badge-xs .typingtwo {
+        white-space:nowrap;
+        overflow:hidden;
+        -webkit-animation: typing 1s steps(29, end), step-end infinite;
+        -webkit-animation-delay: 2s;
+        -webkit-animation-fill-mode:both;
+        -moz-animation: typing 1s steps(29, end), step-end infinite;
+        -moz-animation-delay: 2s;
+        -moz-animation-fill-mode:both;
+    }
+
 .typingthree {
 	text-align: center;
 	white-space:nowrap;
