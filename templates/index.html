@@ -1,23 +1,14 @@
-{% extends "layout.html" %}
-{% block body %}
-  <!-- Main jumbotron for a primary marketing message or call to action -->
-      {% block about_body %} {% endblock %}
-      <div class="row">
-        <div class="col-md-1 alert alert-success">1</div>
-        <div class="col-md-1 alert alert-success">2</div>
-        <div class="col-md-1 alert alert-success">3</div>
-        <div class="col-md-1 alert alert-success">4</div>
-        <div class="col-md-1 alert alert-success">5</div>
-        <div class="col-md-1 alert alert-success">6</div>
-        <div class="col-md-1 alert alert-success">7</div>
-        <div class="col-md-1 alert alert-success">8</div>
-        <div class="col-md-1 alert alert-success">9</div>
-        <div class="col-md-1 alert alert-success">10</div>
-        <div class="col-md-1 alert alert-success">11</div>
-        <div class="col-md-1 alert alert-success">12</div>
-      </div>
-      <a href="http://www.facebook.com/JohnLZeller"><img style="height: 100px;" src="static/images/icons/facebook.png"></a>
-      <a href="http://www.twitter.com/JohnLukeZeller"><img style="height: 100px;" src="static/images/icons/twitter.png"></a>
-      <a href="http://www.gplus.com/#"><img style="height: 100px;" src="static/images/icons/googleplus.png"></a>
-      <a href="http://www.johnzeller.com/blog/feed"><img style="height: 100px;" src="static/images/icons/rss.png"></a>
+{% extends "layout2.html" %}
+{% block index %}
+    <div class="hidden-xs" id="badge">
+      <h1 class="cover-heading typingone">>> Hi, my name is John Zeller</h1>
+      <h1 class="cover-heading typingtwo">>> I am a Software Developer <span class="blink">|</span></h1>
+    </div>
+    <div class="visible-xs" id="badge-xs">
+      <h4 class="cover-heading typingone">>> Hi, my name is John Zeller</h4>
+      <h4 class="cover-heading typingtwo">>> I am a Software Developer <span class="blink">|</span></h4>
+    </div>
+    <!--<div class="typingthree">>> to continue press <a onclick="yes();" href="#">y</a> or 
+        <a onclick="no();" href="#">n</a><br></div>-->
+
 {% endblock %}
