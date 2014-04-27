@@ -22,18 +22,22 @@ body{height:100%}
 
 /* ====================== LAYOUT ====================== */
 .about-page {
+    height: 110% !important;
     background-color: #D7423C;
 }
 
 .experience-page {
+    height: 110% !important;
     background-color: #2A3642;
 }
 
 .projects-page {
+    height: 110% !important;
     background-color: #F0EDE8;
 }
 
 .contact-page {
+    height: 110% !important;
     background-color: #333333;
 }
 
