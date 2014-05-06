@@ -113,4 +113,14 @@
     <script src="../static/js/bootstrap.min.js"></script>
     <script src="static/js/docs.min.js"></script>
     <script type="text/javascript">{{ auth_script|safe }}</script>
+    <script type="text/javascript">
+      $(function(){
+        $('.masthead-nav a').click(function () {
+          $('.masthead-nav a').css('background-color', 'transparent');
+          $('.masthead-nav a').css('border-bottom-color', 'rgba(255,255,255,.0)');
+         $(this).css('background-color', 'transparent');
+         $(this).css('border-bottom-color', 'rgba(255,255,255,.25)');
+         });
+       });
+    </script>
   </body>
