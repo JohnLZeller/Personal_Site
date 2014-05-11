@@ -4,7 +4,6 @@ from contextlib import closing
 import time
 from flask.ext.sqlalchemy import SQLAlchemy
 from pprint import pprint
-from hashlib import md5
 from datetime import datetime
 import urllib2
 import json
@@ -17,7 +16,8 @@ SECRET_KEY = 'development key'
 USERNAME = 'admin'
 PASSWORD = 'default'
 
-app = Flask(__name__)
+application = Flask(__name__)
+app = application
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flaskr.db'
 db = SQLAlchemy(app)
 app.config.from_object(__name__)
