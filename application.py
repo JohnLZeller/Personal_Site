@@ -1,6 +1,4 @@
-import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
-from contextlib import closing
 import time
 from flask.ext.sqlalchemy import SQLAlchemy
 from pprint import pprint
@@ -9,6 +7,7 @@ import urllib2
 import json
 from bs4 import BeautifulSoup
 import xmltodict
+
 
 ## SETUP
 DEBUG = True
@@ -122,4 +121,4 @@ if __name__ == '__main__':
     file_handler.setFormatter(formatter)
     app.logger.addHandler(file_handler)
     app.logger.setLevel(logging.WARNING)
-    app.run(host='0.0.0.0', port=5005)
+    app.run()
