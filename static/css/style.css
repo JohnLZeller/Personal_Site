@@ -494,8 +494,8 @@ body{height:100%}
 }
 
 /* ==================== Work Panels ============================== */
-.user-details {border-style: solid; border-width: 5px; border-color: #2A3642; position: relative; padding: 0;}
-.user-details .user-info-block {width: 100%; position: absolute; top: 55px; background: rgb(255, 255, 255); z-index: 0; padding-top: 35px;}
+.user-details {position: relative; padding: 0px 5px 0px 5px;}
+.user-details .user-info-block {width: 100%; position: relative; top: 55px; background: rgb(255, 255, 255); z-index: 0; padding-top: 35px; margin-bottom: 5px;}
  .user-info-block .user-heading {width: 100%; text-align: center; margin: -10px 0 0;}
  .user-info-block .navigation {float: left; width: 100%; margin: 0; padding: 0; list-style: none; border-bottom: 1px solid #428BCA; border-top: 1px solid #428BCA;}
   .navigation li {float: left; margin: 0; padding: 0;}
@@ -504,6 +504,7 @@ body{height:100%}
  .user-info-block .user-body {float: left; padding: 5%; width: 90%;}
   .user-body .tab-content > div {float: left; width: 100%;}
   .user-body .tab-content h4 {width: 100%; margin: 10px 0; color: #333;}
+.experience-heading {margin-bottom: -30px;}
 
 .work-badge {display: inline !important; padding-bottom: 10px; max-height: 100px; max-width: 230px;}
 .help-block-adjust {position: relative; top: -5px;}

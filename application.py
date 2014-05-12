@@ -21,8 +21,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flaskr.db'
 db = SQLAlchemy(app)
 app.config.from_object(__name__)
 
-app.config['BROWSERID_LOGIN_URL'] = "/login"
-app.config['BROWSERID_LOGOUT_URL'] = "/logout"
 app.config['SECRET_KEY'] = "deterministic"
 app.config['TESTING'] = True
 
