@@ -509,4 +509,4 @@ body{height:100%}
 
 .work-badge {display: inline !important; padding-bottom: 10px; max-height: 100px; max-width: 230px;}
 .help-block-adjust {position: relative; top: -5px;}
-.work-text {padding: 5px 20px 5px 20px !important;}
+.work-text {padding: 5px 20px 20px 20px !important;}
