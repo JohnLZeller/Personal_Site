@@ -505,6 +505,7 @@ body{height:100%}
   .user-body .tab-content > div {float: left; width: 100%;}
   .user-body .tab-content h4 {width: 100%; margin: 10px 0; color: #333;}
 .experience-heading {margin-bottom: -30px;}
+.skill-heading {margin-top: -20px; margin-bottom: -10px; color: black;}
 
 .work-badge {display: inline !important; padding-bottom: 10px; max-height: 100px; max-width: 230px;}
 .help-block-adjust {position: relative; top: -5px;}
