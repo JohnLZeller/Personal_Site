@@ -1,12 +1,18 @@
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
-import time
+
 from flask.ext.sqlalchemy import SQLAlchemy
-from pprint import pprint
-from datetime import datetime
+from flask.ext.mail import Mail, Message
+
+import time
 import urllib2
 import json
-from bs4 import BeautifulSoup
 import xmltodict
+import os
+
+from forms import ContactForm
+from pprint import pprint
+from datetime import datetime
+from bs4 import BeautifulSoup
 
 
 ## SETUP
@@ -14,12 +20,21 @@ DEBUG = True
 SECRET_KEY = 'development key'
 USERNAME = 'admin'
 PASSWORD = 'default'
+MAIL_SERVER='smtp.gmail.com'
+MAIL_PORT=465
+MAIL_USE_TLS = False
+MAIL_USE_SSL= True
+MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
+MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+CSRF_ENABLED = False # TODO: Add CSRF Protection :)
 
 application = Flask(__name__)
 app = application
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flaskr.db'
+
 db = SQLAlchemy(app)
 app.config.from_object(__name__)
+mail = Mail(application)
 
 app.config['SECRET_KEY'] = "deterministic"
 app.config['TESTING'] = True
@@ -101,10 +116,29 @@ def repos(): # changes structure = [timestamp, eventtype, description, revision,
 
 	return list(changes)
 
+def send_email(form):
+    msg = Message(
+       subject='CONTACT ME: ' + form.name.data,
+       sender=form.email.data,
+       recipients=['johnlzeller@gmail.com'])
+    msg.body = form.message.data
+    try:
+        mail.send(msg)
+    except Exception as e:
+        print e
+        form.success = False
+        return form
+    form.success = True
+    
+    return form
+
 ### Routing ###
-@app.route('/')
+@app.route('/', methods = ['GET', 'POST'])
 def home():
-    return render_template('index.html')
+    form = ContactForm()
+    if form.validate_on_submit():
+        form = send_email(form)
+    return render_template('index.html', form=form)
 
 @app.route('/repos')
 def show_repos():
