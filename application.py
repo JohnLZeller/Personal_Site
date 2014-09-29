@@ -155,6 +155,10 @@ def most_recent_fitness_activity():
 	activity['duration']['hours'] = ("%02d" % activity['duration']['hours'])
 	activity['duration']['minutes'] = ("%02d" % activity['duration']['minutes'])
 	activity['duration']['seconds'] = ("%02d" % activity['duration']['seconds'])
+
+	activity['total_distance'] = meters_to_miles(activity['total_distance'])
+
+	activity['num_activity_words'] = len(activity['type'].split(' '))
 	return activity
 
 def time_elapsed_since_fitness_activity(activity):
@@ -184,6 +188,9 @@ def rough_time_elapsed(activity):
 	for period in ['weeks', 'days', 'hours', 'minutes', 'seconds']:
 		if elapsed[period] > 0:
 			return "{} {} Ago".format(elapsed[period], period.title())
+
+def meters_to_miles(meters):
+	return round(meters * 0.00062137, 2)
 
 ### Routing ###
 @app.route('/', methods = ['GET', 'POST'])
