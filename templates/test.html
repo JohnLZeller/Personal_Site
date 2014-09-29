@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!-- Based on Cover Template for Bootstrap by @mdo -->
 
 <!-- ===============================================================
  * Filename: layout.html
@@ -6,29 +6,42 @@
  * Date Created: January 7, 2014
  * Recently Updated: January 7, 2014
  * ------
- * Notes:
+ * Referenced:
+ *              http://stackoverflow.com/questions/18455070/how-to-achieve-active-state-in-a-navigation-for-a-one-page-website
  * =============================================================-->
 
+<!DOCTYPE HTML>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="author" content="">
+<meta name="description" content="This is John Zeller's website!">
+<meta name="author" content="John Zeller">
  
-<title>Test</title>
-<html>
-  <body>
-    <table style="padding: 10px;">
-      <tr style="padding: 10px;"><th>Time</th><th>Event Type</th><th>Description</th><th>Revision</th><th>Repository</th></tr>
-      {% for change in changes %}
-        <tr style="padding: 10px;">
-          <td style="padding: 10px;">{{ change[0] }}</td>
-          <td style="padding: 10px;">{{ change[1] }}</td>
-          <td style="padding: 10px;"><a href="{{ change[4] }}" target="_blank">{{ change[2] }}</a></td>
-          <td style="padding: 10px;">{{ change[3] }}</td>
-          <td style="padding: 10px;"><a href="{{ change[6] }}" target="_blank">{{ change[5] }}</a></td>
-        </tr>
-      {% endfor %}
-    </table>
-  </body>
-</html>
+<title>John Zeller | Software Developer</title>
+
+<!-- Bootstrap core CSS -->
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='../static/css/bootstrap.min.css') }}">
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='../static/css/style.css') }}">
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='../static/css/badge.css') }}">
+
+<body>
+    <div class="container">
+        <div class="row user-menu-container square">
+            <div class="row overview">
+                <div class="col-md-4 user-pad text-center">
+                    <h3>FOLLOWERS</h3>
+                    <h4>2,784</h4>
+                </div>
+                <div class="col-md-4 user-pad text-center">
+                    <h3>FOLLOWING</h3>
+                    <h4>456</h4>
+                </div>
+                <div class="col-md-4 user-pad text-center">
+                    <h3>APPRECIATIONS</h3>
+                    <h4>4,901</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+

@@ -8,6 +8,7 @@ import urllib2
 import json
 import xmltodict
 import os
+import requests
 
 from forms import ContactForm
 from pprint import pprint
@@ -26,6 +27,7 @@ MAIL_USE_TLS = False
 MAIL_USE_SSL= True
 MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
 MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+RK_ACCESS_TOKEN = os.environ.get('RK_ACCESS_TOKEN')
 CSRF_ENABLED = False # TODO: Add CSRF Protection :)
 
 application = Flask(__name__)
@@ -132,17 +134,72 @@ def send_email(form):
     
     return form
 
+def get_fitness_activities():
+	r = requests.get('https://api.runkeeper.com/fitnessActivities?access_token={}'.format(RK_ACCESS_TOKEN), 
+					 headers={'Content-Type': 'application/vnd.com.runkeeper.FitnessActivityFeed+json'})
+	return json.loads(r.content)
+
+def most_recent_fitness_activity():
+	activities = get_fitness_activities()
+	activity = activities['items'][0]
+	activity = requests.get('https://api.runkeeper.com{}?access_token={}'.format(activity['uri'], RK_ACCESS_TOKEN), 
+					 headers={'Content-Type': 'application/vnd.com.runkeeper.FitnessActivityFeed+json'})
+	activity = json.loads(activity.content)
+	activity['time_elapsed'] = time_elapsed_since_fitness_activity(activity)
+	activity['rough_time_elapsed'] = rough_time_elapsed(activity)
+
+	duration = activity['duration']
+	activity['duration'] = {'hours': duration / 60 / 60}
+	activity['duration']['minutes'] = (duration - (activity['duration']['hours'] * 60 * 60)) / 60
+	activity['duration']['seconds'] = duration - (activity['duration']['minutes'] * 60) - (activity['duration']['hours'] * 60 * 60)
+	activity['duration']['hours'] = ("%02d" % activity['duration']['hours'])
+	activity['duration']['minutes'] = ("%02d" % activity['duration']['minutes'])
+	activity['duration']['seconds'] = ("%02d" % activity['duration']['seconds'])
+	return activity
+
+def time_elapsed_since_fitness_activity(activity):
+	temp_tstmp = activity['start_time'].split(' ')
+	if len(temp_tstmp) == 1 and '0' not in temp_tstmp:
+		temp_tstmp[1] = '0'+temp_tstmp[1]
+	tstmp = " ".join(temp_tstmp)
+
+	unix_tstmp = time.mktime(time.strptime(tstmp, '%a, %d %b %Y %H:%M:%S'))
+	since = time.time() - unix_tstmp
+
+	elapsed = {}
+	elapsed['weeks'] = int(since / 60 / 60 / 24 / 7)
+	left = since - (elapsed['weeks'] * 7 * 24 * 60 * 60)
+	elapsed['days'] = int(left / 60 / 60 / 24)
+	left = since - (elapsed['days'] * 24 * 60 * 60)
+	elapsed['hours'] = int(left / 60 / 60)
+	left = since - (elapsed['hours'] * 60 * 60)
+	elapsed['minutes'] = int(left / 60)
+	left = since - (elapsed['minutes'] * 60)
+	elapsed['seconds'] = int(left)
+	return elapsed
+
+def rough_time_elapsed(activity):
+	elapsed = time_elapsed_since_fitness_activity(activity)
+
+	for period in ['weeks', 'days', 'hours', 'minutes', 'seconds']:
+		if elapsed[period] > 0:
+			return "{} {} Ago".format(elapsed[period], period.title())
+
 ### Routing ###
 @app.route('/', methods = ['GET', 'POST'])
 def home():
     form = ContactForm()
     if form.validate_on_submit():
         form = send_email(form)
-    return render_template('index.html', form=form)
+    return render_template('index.html', form=form, fitness=most_recent_fitness_activity())
 
 @app.route('/repos')
 def show_repos():
     return render_template('test.html', changes=repos())
+
+@app.route('/test')
+def test():
+    return render_template('test.html')
 
 if __name__ == '__main__':
 	#if not app.debug:
