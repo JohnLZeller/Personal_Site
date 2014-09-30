@@ -1,6 +1,8 @@
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
 
-from flask.ext.sqlalchemy import SQLAlchemy
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import scoped_session, sessionmaker, Query
 from flask.ext.mail import Mail, Message
 
 import time
@@ -33,16 +35,27 @@ MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
 RK_ACCESS_TOKEN = os.environ.get('RK_ACCESS_TOKEN')
 CSRF_ENABLED = False # TODO: Add CSRF Protection :)
 
+# Setup app
 application = Flask(__name__)
 app = application
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flaskr.db'
-
-db = SQLAlchemy(app)
-app.config.from_object(__name__)
-mail = Mail(application)
-
 app.config['SECRET_KEY'] = "deterministic"
 app.config['TESTING'] = True
+
+# Connect to blog database
+engine = create_engine('sqlite:///blog.db', convert_unicode=True, echo=False)
+Base = declarative_base()
+Base.metadata.reflect(engine)
+db_session = scoped_session(sessionmaker(bind=engine))
+
+class Posts(Base):
+    __table__ = Base.metadata.tables['posts']
+
+class Settings(Base):
+    __table__ = Base.metadata.tables['settings']
+
+# Setup Mail
+app.config.from_object(__name__)
+mail = Mail(application)
 
 ### Tools ###
 def most_recent_github_commit():
@@ -164,7 +177,6 @@ def current_temp(location):
         if c == location:
             location_id = i
             break
-    print location_id
     weather = pywapi.get_weather_from_weather_com(location_id)
     temperature_f = round(int(weather['current_conditions']['temperature']) * (9.0/5.0) + 32, 2)
     return temperature_f
@@ -276,6 +288,23 @@ def home():
 @app.route('/git')
 def show_most_recent_git_commit():
     return render_template('git.html', changes=most_recent_github_commit())
+
+@app.route('/blog')
+def show_blog():
+    posts = []
+    for item in db_session.query(Posts.title, Posts.html, Posts.status):
+        title, post, status = item
+        if status == 'published':
+            posts.append({'title': title, 'post': post})
+    settings = {}
+    for item in db_session.query(Settings.key, Settings.value):
+        key, value = item
+        if key == 'title':
+            settings['title'] = value
+        if key == 'description':
+            settings['description'] = value
+
+    return render_template('blog.html', posts=posts, settings=settings)
 
 if __name__ == '__main__':
     #if not app.debug:
