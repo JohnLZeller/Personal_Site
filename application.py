@@ -11,6 +11,7 @@ import os
 import requests
 import re
 import pywapi
+import pytz
 
 from forms import ContactForm
 from pprint import pprint
@@ -46,12 +47,13 @@ app.config['TESTING'] = True
 ### Tools ###
 def most_recent_github_commit():
     commit = json.loads(requests.get('https://api.github.com/users/JohnLZeller/events').content)[0]
-    details = {'created_at': time.mktime(time.strptime(commit['created_at'], '%Y-%m-%dT%H:%M:%SZ')),
+    details = {'created_at': datetime.strptime(commit['created_at'], '%Y-%m-%dT%H:%M:%SZ'),
                'url': commit['payload']['commits'][0]['url'],
                'repo': commit['repo']['name'].split('/')[-1],
                'repo_url': 'https://github.com/{}'.format(commit['repo']['name']),
                'type': re.sub(r'([a-z])([A-Z])', r'\1 \2', commit['type'].strip('Event'))}
-    details['time_elapsed'] = time.time() - details['created_at']
+    details['created_at'] = int(pytz.utc.localize(details['created_at']).astimezone(pytz.timezone('US/Pacific')).strftime("%s"))
+    details['time_elapsed'] = int(datetime.now(tz=pytz.timezone('US/Pacific')).strftime("%s")) - details['created_at']
 
     # Come up with the breakdown of time elapsed
     elapsed = {}
@@ -74,7 +76,13 @@ def most_recent_github_commit():
 
     # Grab avatar URL
     user = json.loads(requests.get('https://api.github.com/users/JohnLZeller').content)
-    commit['avatar_url'] = user['avatar_url']
+    details['avatar_url'] = user['avatar_url']
+
+    # Grab location in profile
+    # TODO: This is a temporary fix until setting up the use of Google;s location history by looking at the kml dumps here 
+    #       https://maps.google.com/locationhistory/b/0/kml?startTime=1373666400000&endTime=1373752800000
+    profile = json.loads(requests.get('https://api.github.com/users/JohnLZeller').content)
+    details['location'] = profile['location']
 
     # Grab total commits this year, longest streak and current streak
     github_page = requests.get('https://github.com/JohnLZeller').content
@@ -148,8 +156,16 @@ def mozilla_hg_commits():
 
     return list(hg_changes)
 
-def current_temp(zipcode):
-    weather = pywapi.get_weather_from_weather_com(str(zipcode))
+def current_temp(location):
+    # TODO: Can be improved to take zip code instead
+    city, state_abv = location.split(', ')
+    location_ids = pywapi.get_location_ids(city)
+    for i, c in location_ids.items():
+        if c == location:
+            location_id = i
+            break
+    print location_id
+    weather = pywapi.get_weather_from_weather_com(location_id)
     temperature_f = round(int(weather['current_conditions']['temperature']) * (9.0/5.0) + 32, 2)
     return temperature_f
 
@@ -164,7 +180,8 @@ def nutrition_info():
     foods = soup.find_all('td', {'class', 'first'})
     for food in foods:
         try:
-            if 'coffee' in food.string or 'Coffee' in food.string:
+            if 'coffee' in food.string or 'Coffee' in food.string or \
+               'espresso' in food.string or 'Espresso' in food.string:
                 info['coffees'] += 1
         except TypeError:
             pass
@@ -251,9 +268,9 @@ def home():
     form = ContactForm()
     if form.validate_on_submit():
         form = send_email(form)
-    print nutrition_info()
+    commit = most_recent_github_commit()
     return render_template('index.html', form=form, fitness=most_recent_fitness_activity(),
-                                         commit=most_recent_github_commit(), current_temp=current_temp(97333),
+                                         commit=most_recent_github_commit(), current_temp=current_temp(commit['location']),
                                          nutrition_info=nutrition_info())
 
 @app.route('/git')
