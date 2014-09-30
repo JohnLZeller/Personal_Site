@@ -71,12 +71,12 @@
       <div class="col-sm-3 text-center">
         <i class="fa fa-flash fa-4x"></i>
         <h3>EATEN</h3>
-        <h4>{{ calories_eaten }} Calories</h4>
+        <h4>{{ nutrition_info['calories_eaten'] }} Calories</h4>
       </div>
       <div class="col-sm-3 text-center">
         <i class="fa fa-coffee fa-4x"></i>
         <h3>COFFEE</h3>
-        <h4>3 Cups</h4>
+        <h4>{{ nutrition_info['coffees'] }}{% if nutrition_info['coffees'] < 2 %} Cup{% else %} Cups{% endif %}</h4>
       </div>
     </div>
   </div>

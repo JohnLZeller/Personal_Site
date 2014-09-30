@@ -153,10 +153,23 @@ def current_temp(zipcode):
     temperature_f = round(int(weather['current_conditions']['temperature']) * (9.0/5.0) + 32, 2)
     return temperature_f
 
-def current_calories_eaten():
-    # This is very hacky at the moment. Applied for API access and Beautiful Soup was giving trouble.
+def nutrition_info():
+    # This is very hacky at the moment. Applied for API access and am waiting to hear back
     mfp = requests.get('http://www.myfitnesspal.com/food/diary/JohnLZeller').content
-    return mfp.split('<td class="first">Totals</td>')[1].split('<td>')[1].split('</td>')[0]
+    soup = BeautifulSoup(mfp)
+    info = {'calories_eaten': soup.find('tr', {'class', 'total'}).td.next_sibling.next_sibling.string,
+            'coffees': 0}#mfp.split('<td class="first">Totals</td>')[1].split('<td>')[1].split('</td>')[0]}
+
+    # Find all coffees
+    foods = soup.find_all('td', {'class', 'first'})
+    for food in foods:
+        try:
+            if 'coffee' in food.string or 'Coffee' in food.string:
+                info['coffees'] += 1
+        except TypeError:
+            pass
+
+    return info
 
 def send_email(form):
     msg = Message(
@@ -238,9 +251,10 @@ def home():
     form = ContactForm()
     if form.validate_on_submit():
         form = send_email(form)
+    print nutrition_info()
     return render_template('index.html', form=form, fitness=most_recent_fitness_activity(),
                                          commit=most_recent_github_commit(), current_temp=current_temp(97333),
-                                         calories_eaten=current_calories_eaten())
+                                         nutrition_info=nutrition_info())
 
 @app.route('/git')
 def show_most_recent_git_commit():
