@@ -1,0 +1,9 @@
+</div>
+<div class="visible-lg row">
+  <div class="row">
+    {% for post in posts %}
+      <div class="col-sm-8 col-sm-push-2">{{ post['title'] }}</div>
+      <div class="col-sm-8 col-sm-push-2">{{ post['post'] }}</div>
+    {% endfor %}
+  </div>
+</div>
