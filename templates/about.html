@@ -3,28 +3,28 @@
   <div class="col-sm-5 col-sm-push-1">
     <img style="float: left; padding: 0px 15px 5px 0px; max-width: 150px;" src="https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-127313368871/images/JohnZeller2.jpg" alt="John Zeller">
     <p style="padding-left: 5px; font-size: 18px;" class="text-left">Our world is made up of data. The possibilities are endless when it comes to the uses for that data, and the more I design and write software, the more I am awed by its ability to impact and draw people together.</p>
-    <h2 style="padding-top: 57px;">Commit Activity</h2>
+    <h2 style="padding-top: 57px;"><a href="commits">Commit Activity</a></h2>
     <div class="row">
       <div class="col-sm-3 text-center">
         <i class="fa fa-rss fa-4x"></i>
         <h3>ACTIVITY</h3>
-        <h4>Commit</h4>
-        <h5><i class="fa fa-calendar"></i> 2 Hours Ago</h5>
+        <h4><a href="{{ commit['url'] }}" target="_blank">{{ commit['type'] }}</a></h4>
+        <h5><i class="fa fa-calendar"></i> {{ commit['rough_time_elapsed'] }} Ago</h5>
       </div>
        <div class="col-sm-3 text-center">
         <i class="fa fa-github fa-4x"></i>
         <h3>REPO</h3>
-        <h4>WheatleyCam</h4>
+        <h4><a href="{{ commit['repo_url'] }}" target="_blank">{{ commit['repo'] }}</a></h4>
       </div>
       <div class="col-sm-3 text-center">
         <i class="fa fa-code fa-4x"></i>
-        <h3>LANGUAGE</h3>
-        <h4>.py</h4>
+        <h3>TYPES</h3>
+        <h4>{{ commit['file_types'] }}</h4>
       </div>
       <div class="col-sm-3 text-center">
         <i class="fa fa-line-chart fa-4x"></i>
         <h3>TOTAL</h3>
-        <h4>308 this year</h4>
+        <h4>{{ commit['total_commits_year'] }} this year</h4>
       </div>
    </div>
   </div>
@@ -66,12 +66,12 @@
       <div class="col-sm-3 text-center">
         <i class="fa fa-sun-o fa-4x"></i>
         <h3>WEATHER</h3>
-        <h4>78<sup>o</sup> F</h4>
+        <h4>{{ current_temp }}<sup>o</sup> F</h4>
       </div>
       <div class="col-sm-3 text-center">
         <i class="fa fa-flash fa-4x"></i>
         <h3>EATEN</h3>
-        <h4>1,678 Calories</h4>
+        <h4>{{ calories_eaten }} Calories</h4>
       </div>
       <div class="col-sm-3 text-center">
         <i class="fa fa-coffee fa-4x"></i>
