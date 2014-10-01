@@ -42,7 +42,7 @@ app.config['SECRET_KEY'] = "deterministic"
 app.config['TESTING'] = True
 
 # Connect to blog database
-engine = create_engine('sqlite:///blog.db', convert_unicode=True, echo=False)
+engine = create_engine('sqlite:///blog/content/data/ghost-dev.db', convert_unicode=True, echo=False)
 Base = declarative_base()
 Base.metadata.reflect(engine)
 db_session = scoped_session(sessionmaker(bind=engine))
@@ -293,7 +293,7 @@ def home():
 def show_most_recent_git_commit():
     return render_template('git.html', changes=most_recent_github_commit())
 
-@app.route('/blog')
+@app.route('/blog-test')
 def show_blog():
     posts = []
     for item in db_session.query(Posts.title, Posts.html, Posts.status):
