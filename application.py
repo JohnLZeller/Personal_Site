@@ -68,6 +68,10 @@ def most_recent_github_commit():
     details['created_at'] = int(pytz.utc.localize(details['created_at']).astimezone(pytz.timezone('US/Pacific')).strftime("%s"))
     details['time_elapsed'] = int(datetime.now(tz=pytz.timezone('US/Pacific')).strftime("%s")) - details['created_at']
 
+    # Grab Commit human readable URL
+    commit_data = json.loads(requests.get(details['url']).content)
+    details['url'] = commit_data['html_url']
+
     # Come up with the breakdown of time elapsed
     elapsed = {}
     elapsed['weeks'] = int(details['time_elapsed'] / 60 / 60 / 24 / 7)
@@ -106,7 +110,7 @@ def most_recent_github_commit():
     details['current_streak'] = contrib_number_set[2].string.title()
 
     # Grab file types
-    files = json.loads(requests.get(details['url']).content)['files']
+    files = commit_data['files']
     details['file_types'] = ''
     for f in files:
         f = f['filename'].split('.')[1]
