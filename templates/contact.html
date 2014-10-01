@@ -1,0 +1,24 @@
+<div style="padding: 100px 40px 0px 40px;" class="row">
+  <div style="margin-top: -100px;" class="visible-sm"></div>
+  {% if form.success %}<span style="color: green;">Email sent!</span>{% endif %}
+  <form role="form" action="" method="post" name="contact">
+    <div class="form-group">
+      {% for error in form.errors.name %}<span style="color: red;">[{{error}}]</span>{% endfor %}<br>
+      {{ form.name(placeholder="Full Name", class="form-control") }}
+    </div>
+    <div class="form-group">
+      {% for error in form.errors.email %}
+        <span style="color: red;">[{{error}}]</span>
+      {% endfor %}<br>
+      {{ form.email(placeholder="Email", class="form-control") }}
+    </div>
+    <div class="form-group">
+      {% for error in form.errors.message %}
+        <span style="color: red;">[{{error}}]</span>
+      {% endfor %}<br>
+      {{ form.message(placeholder="Message", class="form-control") }}
+    </div>
+    
+    <button type="submit" class="btn btn-default">Send</button>
+  </form>
+</div>
