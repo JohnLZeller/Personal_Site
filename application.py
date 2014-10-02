@@ -42,16 +42,16 @@ app.config['SECRET_KEY'] = "deterministic"
 app.config['TESTING'] = True
 
 # Connect to blog database
-engine = create_engine('sqlite:///blog/content/data/ghost-dev.db', convert_unicode=True, echo=False)
-Base = declarative_base()
-Base.metadata.reflect(engine)
-db_session = scoped_session(sessionmaker(bind=engine))
+#engine = create_engine('sqlite:///blog/content/data/ghost-dev.db', convert_unicode=True, echo=False)
+#Base = declarative_base()
+#Base.metadata.reflect(engine)
+#db_session = scoped_session(sessionmaker(bind=engine))
 
-class Posts(Base):
-    __table__ = Base.metadata.tables['posts']
+#class Posts(Base):
+#    __table__ = Base.metadata.tables['posts']
 
-class Settings(Base):
-    __table__ = Base.metadata.tables['settings']
+#class Settings(Base):
+#    __table__ = Base.metadata.tables['settings']
 
 # Setup Mail
 app.config.from_object(__name__)
