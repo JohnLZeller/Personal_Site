@@ -13,7 +13,7 @@ import xmltodict
 import os
 import requests
 import re
-import pywapi
+#import pywapi
 import pytz
 
 from forms import ContactForm
@@ -287,7 +287,7 @@ def home():
         form = send_email(form)
     commit = most_recent_github_commit()
     return render_template('index.html', form=form, fitness=most_recent_fitness_activity(),
-                                         commit=most_recent_github_commit(), current_temp=current_temp(commit['location']),
+                                         commit=most_recent_github_commit(), nutrition_info=nutrition_info())#current_temp=current_temp(commit['location']),
                                          nutrition_info=nutrition_info())
 
 @app.route('/git')
