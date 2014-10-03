@@ -31,9 +31,12 @@ MAIL_SERVER='smtp.gmail.com'
 MAIL_PORT=465
 MAIL_USE_TLS = False
 MAIL_USE_SSL= True
-MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
-MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
-RK_ACCESS_TOKEN = os.environ.get('RK_ACCESS_TOKEN')
+f = open('conf.conf', 'r')
+conf = json.loads(f.read())
+f.close()
+MAIL_USERNAME = conf['MAIL_USERNAME']
+MAIL_PASSWORD = conf['MAIL_PASSWORD']
+RK_ACCESS_TOKEN = conf['RK_ACCESS_TOKEN']
 CSRF_ENABLED = False # TODO: Add CSRF Protection :)
 
 # Setup app
@@ -287,8 +290,8 @@ def home():
         form = send_email(form)
     commit = most_recent_github_commit()
     return render_template('index.html', form=form, fitness=most_recent_fitness_activity(),
-                                         commit=most_recent_github_commit(), nutrition_info=nutrition_info())#current_temp=current_temp(commit['location']),
-                                         nutrition_info=nutrition_info())
+                                         commit=most_recent_github_commit(), nutrition_info=nutrition_info())
+                                         #current_temp=current_temp(commit['location']))
 
 @app.route('/git')
 def show_most_recent_git_commit():
