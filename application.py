@@ -30,12 +30,12 @@ MAIL_SERVER='smtp.gmail.com'
 MAIL_PORT=465
 MAIL_USE_TLS = False
 MAIL_USE_SSL= True
-MAIL_USERNAME = 'contact.johnlzeller@gmail.com'#os.environ.get('MAIL_USERNAME')
-MAIL_PASSWORD = 'passwordpasswordrobot$'#os.environ.get('MAIL_PASSWORD')
-RK_ACCESS_TOKEN = 'b44fa40d406544d0bbca4f08a533fd56'#os.environ.get('RK_ACCESS_TOKEN')
-print MAIL_USERNAME
-print MAIL_PASSWORD
-print RK_ACCESS_TOKEN
+f = open('secret', 'r')
+secrets = json.loads(f.read())
+f.close()
+MAIL_USERNAME = secrets['username']
+MAIL_PASSWORD = secrets['password']
+RK_ACCESS_TOKEN = secrets['acccess_token']
 CSRF_ENABLED = False # TODO: Add CSRF Protection :)
 
 # Setup app
@@ -295,6 +295,10 @@ def home():
 @app.route('/git')
 def show_most_recent_git_commit():
     return render_template('git.html', changes=most_recent_github_commit())
+
+@app.route('/blog')
+def redirect_to_blog():
+    return redirect('http://blog.zwikle.com')
 
 @app.route('/blog-test')
 def show_blog():
