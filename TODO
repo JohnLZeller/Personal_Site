@@ -1,3 +1,0 @@
-* Parse shortlog instead of atom-log (http://hg.mozilla.org/build/buildapi/shortlog rather than http://hg.mozilla.org/build/buildapi/atom-log)
-	* This is only necessary once! After that the atom-log will work just fine.
-* Everytime the parser runs it should be adding data to a mysql database so that external calls are not necessary when serving up information

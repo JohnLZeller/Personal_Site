@@ -13,7 +13,6 @@ import xmltodict
 import os
 import requests
 import re
-#import pywapi
 import pytz
 
 from forms import ContactForm
@@ -37,6 +36,7 @@ f.close()
 MAIL_USERNAME = conf['MAIL_USERNAME']
 MAIL_PASSWORD = conf['MAIL_PASSWORD']
 RK_ACCESS_TOKEN = conf['RK_ACCESS_TOKEN']
+WEATHER_ACCESS_TOKEN = conf['WEATHER_ACCESS_TOKEN']
 CSRF_ENABLED = False # TODO: Add CSRF Protection :)
 
 # Setup app
@@ -117,7 +117,10 @@ def most_recent_github_commit():
     files = commit_data['files']
     details['file_types'] = ''
     for f in files:
-        f = f['filename'].split('.')[1]
+        if '.' in f['filename']:
+            f = f['filename'].split('.')[1]
+        else:
+            f = f['filename']
         if f not in details['file_types']:
             details['file_types'] += '.{}, '.format(f)
     details['file_types'] = details['file_types'][:-2]
@@ -178,16 +181,11 @@ def mozilla_hg_commits():
     return list(hg_changes)
 
 def current_temp(location):
-    # TODO: Can be improved to take zip code instead
-    city, state_abv = location.split(', ')
-    location_ids = pywapi.get_location_ids(city)
-    for i, c in location_ids.items():
-        if c == location:
-            location_id = i
-            break
-    weather = pywapi.get_weather_from_weather_com(location_id)
-    temperature_f = round(int(weather['current_conditions']['temperature']) * (9.0/5.0) + 32, 2)
-    return temperature_f
+    city, state_abv = location.split(',')
+    if ' ' in city:
+        city = '_'.join(city.split(' '))
+    weather = json.loads(requests.get('http://api.wunderground.com/api/{}/conditions/q/{}/{}.json'.format(WEATHER_ACCESS_TOKEN, state_abv, city)).content)
+    return weather['current_observation']['temp_f']
 
 def nutrition_info():
     # This is very hacky at the moment. Applied for API access and am waiting to hear back
@@ -290,12 +288,8 @@ def home():
         form = send_email(form)
     commit = most_recent_github_commit()
     return render_template('index.html', form=form, fitness=most_recent_fitness_activity(),
-                                         commit=most_recent_github_commit(), nutrition_info=nutrition_info())
-                                         #current_temp=current_temp(commit['location']))
-
-@app.route('/git')
-def show_most_recent_git_commit():
-    return render_template('git.html', changes=most_recent_github_commit())
+                                         commit=most_recent_github_commit(), current_temp=current_temp(commit['location']),
+                                         nutrition_info=nutrition_info())
 
 @app.route('/blog-test')
 def show_blog():
@@ -315,12 +309,5 @@ def show_blog():
     return render_template('blog.html', posts=posts, settings=settings)
 
 if __name__ == '__main__':
-    #if not app.debug:
-    import logging
-    from logging.handlers import WatchedFileHandler
-    file_handler = WatchedFileHandler('flask.log')
-    formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
-    file_handler.setFormatter(formatter)
-    app.logger.addHandler(file_handler)
-    app.logger.setLevel(logging.WARNING)
+    # TODO: Add logging
     app.run()
