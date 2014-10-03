@@ -30,9 +30,12 @@ MAIL_SERVER='smtp.gmail.com'
 MAIL_PORT=465
 MAIL_USE_TLS = False
 MAIL_USE_SSL= True
-MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
-MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
-RK_ACCESS_TOKEN = os.environ.get('RK_ACCESS_TOKEN')
+MAIL_USERNAME = 'contact.johnlzeller@gmail.com'#os.environ.get('MAIL_USERNAME')
+MAIL_PASSWORD = 'passwordpasswordrobot$'#os.environ.get('MAIL_PASSWORD')
+RK_ACCESS_TOKEN = 'b44fa40d406544d0bbca4f08a533fd56'#os.environ.get('RK_ACCESS_TOKEN')
+print MAIL_USERNAME
+print MAIL_PASSWORD
+print RK_ACCESS_TOKEN
 CSRF_ENABLED = False # TODO: Add CSRF Protection :)
 
 # Setup app
