@@ -63,7 +63,6 @@ try:
         __table__ = Base.metadata.tables['wp_term_relationships']
 except Exception as e:
     print e
-    continue
 
 # Setup Mail
 app.config.from_object(__name__)
@@ -240,7 +239,7 @@ def most_recent_fitness_activity():
     except Exception as e:
         print e
         activity = {'time_elapsed': '',
-                    'rough_time_elapsed', '',
+                    'rough_time_elapsed': '',
                     'duration': {'hours': 0, 'minutes': 0, 'seconds': 0},
                     'total_distance': 0,
                     'num_activity_words': 0}
