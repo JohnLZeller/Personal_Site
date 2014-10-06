@@ -173,7 +173,7 @@ def nutrition_info():
         mfp = requests.get('http://www.myfitnesspal.com/food/diary/JohnLZeller').content
         soup = BeautifulSoup(mfp)
         info = {'calories_eaten': soup.find('tr', {'class', 'total'}).td.next_sibling.next_sibling.string,
-                'coffees': 0}#mfp.split('<td class="first">Totals</td>')[1].split('<td>')[1].split('</td>')[0]}
+                'coffees': 0}
 
         # Find all coffees
         foods = soup.find_all('td', {'class', 'first'})
@@ -280,32 +280,33 @@ def rough_time_elapsed(activity):
 def meters_to_miles(meters):
     return round(meters * 0.00062137, 2)
 
-def grab_posts(category=None):
+def grab_posts(category=None, number=None):
     posts = []
     try:
         if category:
-            for id in db_session.query(Terms.term_id).filter_by(name=category.title()):
-                for tax_id in db_session.query(Term_Taxonomy.term_taxonomy_id).\
-                                         filter_by(term_id=int(id[0])):
-                        for obj in db_session.query(Term_Relationships.object_id).\
-                                              filter_by(term_taxonomy_id=int(tax_id[0])):
-                                for post in db_session.query(Posts.post_title, Posts.post_author, \
-                                                             Posts.post_date, Posts.post_content).\
-                                                       filter_by(ID=int(obj[0]), post_status=u'publish'):
-                                    title, author, date, content = post
-                                    posts.append({'title': title, 'date': date, 
-                                                  'author': author, 'post': post})
+            # TODO: Check that tax_id in the Term_Taxonomy table is referring to a 'category' by looking at 
+            #       the taxonomy Column, if it is not, then the tax_id is wrong and probably referring to a tag
+            term_id = db_session.query(Terms.term_id).filter_by(name=category.title()).first()
+            tax_id = db_session.query(Term_Taxonomy.term_taxonomy_id).filter_by(term_id=int(term_id[0])).first()
+            for obj_id in db_session.query(Term_Relationships.object_id).filter_by(term_taxonomy_id=int(tax_id[0])):
+                for post in db_session.query(Posts.post_title, Posts.post_date, Posts.post_content, Posts.post_name).\
+                                       filter_by(ID=int(obj_id[0]), post_status=u'publish'):
+                    title, date, content, post_name = post
+                    content_short = BeautifulSoup(content).find('p').text
+                    posts.append({'title': title, 'date': date, 'post_name': post_name,
+                                  'content': content,'content_short': content_short})
         else:
-            for post in db_session.query(Posts.post_title, Posts.post_author, \
-                                         Posts.post_date, Posts.post_content).\
+            for post in db_session.query(Posts.post_title, Posts.post_date, \
+                                         Posts.post_content, Posts.post_name).\
                                    filter_by(post_status=u'publish'):
-                title, author, date, content = post
-                posts.append({'title': title, 'date': date, 'author': author, 
-                              'post': post})
+                content_short = BeautifulSoup(content).find('p').text
+                title, date, content, post_name = post
+                posts.append({'title': title, 'date': date, 'content': content, 
+                              'post_name': post_name, 'content_short': content_short})
     except Exception as e:
         print e
-
-    return posts
+    
+    return posts[0:number]
 
 ### Routing ###
 @app.route('/', methods = ['GET'])
@@ -314,13 +315,12 @@ def home():
     if form.validate_on_submit():
         form = send_email(form)
     commit = most_recent_github_commit()
-    return render_template('index.html', form=form, fitness=most_recent_fitness_activity(),
-                                         commit=commit, current_temp=current_temp(commit['location']),
-                                         nutrition_info=nutrition_info())
-
-@app.route('/test', methods = ['GET'])
-def test():
-    return grab_posts('Mozilla')
+    return render_template('index.html', form = form, fitness = most_recent_fitness_activity(),
+                                         commit = commit, 
+                                         current_temp = current_temp(commit['location']),
+                                         nutrition_info = nutrition_info(), 
+                                         software_projects = grab_posts('Software Projects', 3),
+                                         nonsoftware_projects = grab_posts('Non-Software Projects', 3))
 
 if __name__ == '__main__':
     # TODO: Add logging
