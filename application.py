@@ -162,10 +162,11 @@ def current_temp(location):
         city = '_'.join(city.split(' '))
     try:
         weather = json.loads(requests.get('http://api.wunderground.com/api/{}/conditions/q/{}/{}.json'.format(WEATHER_ACCESS_TOKEN, state_abv, city)).content)
+        temp_f = weather['current_observation']['temp_f']
     except Exception as e:
         print e
-        weather = 'ERR'
-    return weather['current_observation']['temp_f']
+        temp_f = 'ERR'
+    return temp_f
 
 def nutrition_info():
     try:
@@ -240,6 +241,7 @@ def most_recent_fitness_activity():
         print e
         activity = {'time_elapsed': '',
                     'rough_time_elapsed': '',
+                    'type': '',
                     'duration': {'hours': 0, 'minutes': 0, 'seconds': 0},
                     'total_distance': 0,
                     'num_activity_words': 0}
