@@ -283,6 +283,7 @@ def meters_to_miles(meters):
 def grab_posts(category=None, number=None):
     posts = []
     try:
+        # TODO: Order by most recent first
         if category:
             # TODO: Check that tax_id in the Term_Taxonomy table is referring to a 'category' by looking at 
             #       the taxonomy Column, if it is not, then the tax_id is wrong and probably referring to a tag
@@ -320,7 +321,7 @@ def home():
                                          current_temp = current_temp(commit['location']),
                                          nutrition_info = nutrition_info(), 
                                          software_projects = grab_posts('Software Projects', 3),
-                                         nonsoftware_projects = grab_posts('Non-Software Projects', 3))
+                                         nonsoftware_projects = grab_posts('NonSoftware Projects', 3))
 
 if __name__ == '__main__':
     # TODO: Add logging
