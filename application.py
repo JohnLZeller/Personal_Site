@@ -30,13 +30,13 @@ MAIL_SERVER = 'smtp.gmail.com'
 MAIL_PORT = 465
 MAIL_USE_TLS = False
 MAIL_USE_SSL = True
-MAIL_USERNAME = 'contact.johnlzeller@gmail.com'
-MAIL_PASSWORD = 'passwordpasswordrobot$'
-RK_ACCESS_TOKEN = 'b44fa40d406544d0bbca4f08a533fd56'
-WEATHER_ACCESS_TOKEN = 'fef8fd1e9db5d0f7'
-DB_USERNAME = 'root'
+MAIL_USERNAME = ''
+MAIL_PASSWORD = ''
+RK_ACCESS_TOKEN = ''
+WEATHER_ACCESS_TOKEN = ''
+DB_USERNAME = ''
 DB_PASSWORD = ''
-DB_DATABASE = 'wordpress'
+DB_DATABASE = ''
 CSRF_ENABLED = False # TODO: Add CSRF Protection :)
 
 # Setup app
