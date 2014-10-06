@@ -300,7 +300,7 @@ def grab_posts(category=None, number=None):
                     try:
                         content_short = soup.find('p').text
                     except Exception:
-                        content_short = soup.get_text()[0:300]
+                        content_short = soup.get_text()[0:300] + '...'
                     posts.append({'title': title, 'date': date, 'date_str': date.strftime("%B %d, %Y @ %H:%M PST"), 
                                   'post_name': post_name, 'content': content,'content_short': content_short})
         else:
