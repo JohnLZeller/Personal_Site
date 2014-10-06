@@ -30,13 +30,13 @@ MAIL_SERVER = 'smtp.gmail.com'
 MAIL_PORT = 465
 MAIL_USE_TLS = False
 MAIL_USE_SSL = True
-MAIL_USERNAME = ''
-MAIL_PASSWORD = ''
-RK_ACCESS_TOKEN = ''
-WEATHER_ACCESS_TOKEN = ''
-DB_USERNAME = ''
+MAIL_USERNAME = 'contact.johnlzeller@gmail.com'
+MAIL_PASSWORD = 'passwordpasswordrobot$'
+RK_ACCESS_TOKEN = 'b44fa40d406544d0bbca4f08a533fd56'
+WEATHER_ACCESS_TOKEN = 'fef8fd1e9db5d0f7'
+DB_USERNAME = 'root'
 DB_PASSWORD = ''
-DB_DATABASE = ''
+DB_DATABASE = 'wordpress'
 CSRF_ENABLED = False # TODO: Add CSRF Protection :)
 
 # Setup app
@@ -284,12 +284,22 @@ def grab_posts(category=None):
     posts = []
     try:
         if category:
-            pass # TODO: Find categories and grab posts
+            for id in db_session.query(Terms.term_id).filter_by(name=category.title()):
+                for tax_id in db_session.query(Term_Taxonomy.term_taxonomy_id).\
+                                         filter_by(term_id=int(id[0])):
+                        for obj in db_session.query(Term_Relationships.object_id).\
+                                              filter_by(term_taxonomy_id=int(tax_id[0])):
+                                for post in db_session.query(Posts.post_title, Posts.post_author, \
+                                                             Posts.post_date, Posts.post_content).\
+                                                       filter_by(ID=int(obj[0]), post_status=u'publish'):
+                                    title, author, date, content = post
+                                    posts.append({'title': title, 'date': date, 
+                                                  'author': author, 'post': post})
         else:
-            for item in db_session.query(Posts.post_title, Posts.post_author, \
+            for post in db_session.query(Posts.post_title, Posts.post_author, \
                                          Posts.post_date, Posts.post_content).\
                                    filter_by(post_status=u'publish'):
-                title, author, date, content = item
+                title, author, date, content = post
                 posts.append({'title': title, 'date': date, 'author': author, 
                               'post': post})
     except Exception as e:
@@ -298,7 +308,7 @@ def grab_posts(category=None):
     return posts
 
 ### Routing ###
-@app.route('/', methods = ['GET', 'POST'])
+@app.route('/', methods = ['GET'])
 def home():
     form = ContactForm()
     if form.validate_on_submit():
@@ -307,6 +317,10 @@ def home():
     return render_template('index.html', form=form, fitness=most_recent_fitness_activity(),
                                          commit=commit, current_temp=current_temp(commit['location']),
                                          nutrition_info=nutrition_info())
+
+@app.route('/test', methods = ['GET'])
+def test():
+    return grab_posts('Mozilla')
 
 if __name__ == '__main__':
     # TODO: Add logging
