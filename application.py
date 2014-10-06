@@ -37,6 +37,7 @@ WEATHER_ACCESS_TOKEN = ''
 DB_USERNAME = ''
 DB_PASSWORD = ''
 DB_DATABASE = ''
+GIT_ACCESS_TOKEN = ''
 CSRF_ENABLED = False # TODO: Add CSRF Protection :)
 
 # Setup app
@@ -71,7 +72,7 @@ mail = Mail(application)
 ### Tools ###
 def most_recent_github_commit():
     try:
-        commit = json.loads(requests.get('https://api.github.com/users/JohnLZeller/events').content)[0]
+        commit = json.loads(requests.get('https://api.github.com/users/JohnLZeller/events?access_token={}'.format(GIT_ACCESS_TOKEN)).content)[0]
         details = {'created_at': datetime.strptime(commit['created_at'], '%Y-%m-%dT%H:%M:%SZ'),
                    'url': commit['payload']['commits'][0]['url'],
                    'repo': commit['repo']['name'].split('/')[-1],
@@ -104,13 +105,13 @@ def most_recent_github_commit():
                 break
 
         # Grab avatar URL
-        user = json.loads(requests.get('https://api.github.com/users/JohnLZeller').content)
+        user = json.loads(requests.get('https://api.github.com/users/JohnLZeller?access_token={}'.format(GIT_ACCESS_TOKEN)).content)
         details['avatar_url'] = user['avatar_url']
 
         # Grab location in profile
         # TODO: This is a temporary fix until setting up the use of Google;s location history by looking at the kml dumps here 
         #       https://maps.google.com/locationhistory/b/0/kml?startTime=1373666400000&endTime=1373752800000
-        profile = json.loads(requests.get('https://api.github.com/users/JohnLZeller').content)
+        profile = json.loads(requests.get('https://api.github.com/users/JohnLZeller?access_token={}'.format(GIT_ACCESS_TOKEN)).content)
         details['location'] = profile['location']
 
         # Grab total commits this year, longest streak and current streak
