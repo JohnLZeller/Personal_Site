@@ -318,7 +318,7 @@ def grab_posts(category=None, number=None):
     return posts[0:number]
 
 ### Routing ###
-@app.route('/', methods = ['GET'])
+@app.route('/', methods = ['GET', 'POST'])
 def home():
     form = ContactForm()
     if form.validate_on_submit():
