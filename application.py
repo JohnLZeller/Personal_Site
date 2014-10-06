@@ -287,7 +287,7 @@ def grab_posts(category=None, number=None):
         if category:
             # TODO: Check that tax_id in the Term_Taxonomy table is referring to a 'category' by looking at 
             #       the taxonomy Column, if it is not, then the tax_id is wrong and probably referring to a tag
-            term_id = db_session.query(Terms.term_id).filter_by(name=category).first()
+            term_id = db_session.query(Terms.term_id).filter_by(slug=category).first()
             tax_id = db_session.query(Term_Taxonomy.term_taxonomy_id).filter_by(term_id=int(term_id[0])).first()
             for obj_id in db_session.query(Term_Relationships.object_id).filter_by(term_taxonomy_id=int(tax_id[0])):
                 for post in db_session.query(Posts.post_title, Posts.post_date, Posts.post_content, Posts.post_name).\
@@ -320,8 +320,8 @@ def home():
                                          commit = commit, 
                                          current_temp = current_temp(commit['location']),
                                          nutrition_info = nutrition_info(), 
-                                         software_projects = grab_posts('Software Projects', 3),
-                                         nonsoftware_projects = grab_posts('Non-Software Projects', 3))
+                                         software_projects = grab_posts('software-projects', 3),
+                                         nonsoftware_projects = grab_posts('non-software-projects', 3))
 
 if __name__ == '__main__':
     # TODO: Add logging
