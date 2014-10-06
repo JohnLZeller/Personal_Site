@@ -215,7 +215,7 @@ def get_fitness_activities():
         activities = json.loads(r.content)
     except Exception as e:
         activities = {}
-    return json.loads(r.content)
+    return activities
 
 def most_recent_fitness_activity():
     try:
@@ -228,9 +228,11 @@ def most_recent_fitness_activity():
         activity['rough_time_elapsed'] = rough_time_elapsed(activity)
 
         duration = activity['duration']
-        activity['duration'] = {'hours': duration / 60 / 60}
-        activity['duration']['minutes'] = (duration - (activity['duration']['hours'] * 60 * 60)) / 60
-        activity['duration']['seconds'] = duration - (activity['duration']['minutes'] * 60) - (activity['duration']['hours'] * 60 * 60)
+        activity['duration'] = {'hours': int(duration / 60 / 60)}
+        left = duration - (activity['duration']['hours'] * 60 * 60)
+        activity['duration']['minutes'] = int(left / 60)
+        left = left - (activity['duration']['minutes'] * 60)
+        activity['duration']['seconds'] = left
         activity['duration']['hours'] = ("%02d" % activity['duration']['hours'])
         activity['duration']['minutes'] = ("%02d" % activity['duration']['minutes'])
         activity['duration']['seconds'] = ("%02d" % activity['duration']['seconds'])
