@@ -293,14 +293,22 @@ def grab_posts(category=None, number=None):
                 for post in db_session.query(Posts.post_title, Posts.post_date, Posts.post_content, Posts.post_name).\
                                        filter_by(ID=int(obj_id[0]), post_status=u'publish'):
                     title, date, content, post_name = post
-                    content_short = BeautifulSoup(content).find('p').text
+                    soup = BeautifulSoup(content)
+                    try:
+                        content_short = soup.find('p').text
+                    except Exception:
+                        content_short = soup.get_text()[0:300]
                     posts.append({'title': title, 'date': date, 'post_name': post_name,
                                   'content': content,'content_short': content_short})
         else:
             for post in db_session.query(Posts.post_title, Posts.post_date, \
                                          Posts.post_content, Posts.post_name).\
                                    filter_by(post_status=u'publish'):
-                content_short = BeautifulSoup(content).find('p').text
+                soup = BeautifulSoup(content)
+                try:
+                    content_short = soup.find('p').text
+                except Exception:
+                    content_short = soup.get_text()[0:300]
                 title, date, content, post_name = post
                 posts.append({'title': title, 'date': date, 'content': content, 
                               'post_name': post_name, 'content_short': content_short})
