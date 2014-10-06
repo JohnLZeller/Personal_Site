@@ -7,7 +7,7 @@
 	            <div class="user-info-block">
 	                <div class="user-heading">
 	                    <h1 style="color: #000000;"><a style="color: #000000;" href="http://blog.zwikle.com/{{ post['post_name'] }}" target="_blank">{{ post['title'] }}</a></h1>
-	                    <small><span class="help-block help-block-adjust"><span class="glyphicon glyphicon-time"></span> {{ post['date'].month }}/{{ post['date'].day }}/{{ post['date'].year }} @ {{ post['date'].hour }}:{{ post['date'].minute }}</span></small>
+	                    <small><span class="help-block help-block-adjust"><span class="glyphicon glyphicon-time"></span> {{ post['date_str'] }}</span></small>
 	                    <span class="help-block"><p class="work-text">{{ post['content_short']|safe }}<br><a style="color: #000000;" href="http://blog.zwikle.com/{{ post['post_name'] }}" target="_blank">Read More</a></p></span>
 	                </div>
 	            </div>
@@ -20,7 +20,7 @@
 	            <div class="user-info-block">
 	                <div class="user-heading">
 	                    <h1 style="color: #000000;"><a style="color: #000000;" href="http://blog.zwikle.com/{{ post['post_name'] }}" target="_blank">{{ post['title'] }}</a></h1>
-	                    <small><span class="help-block help-block-adjust"><span class="glyphicon glyphicon-time"></span> {{ post['date'].month }}/{{ post['date'].day }}/{{ post['date'].year }} @ {{ post['date'].hour }}:{{ post['date'].minute }}</span></small>
+	                    <small><span class="help-block help-block-adjust"><span class="glyphicon glyphicon-time"></span> {{ post['date_str'] }}</span></small>
 	                    <span class="help-block"><p class="work-text">{{ post['content_short']|safe }}<br><a style="color: #000000;" href="http://blog.zwikle.com/{{ post['post_name'] }}" target="_blank">Read More</a></p></span>
 	                </div>
 	            </div>

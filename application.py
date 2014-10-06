@@ -298,8 +298,8 @@ def grab_posts(category=None, number=None):
                         content_short = soup.find('p').text
                     except Exception:
                         content_short = soup.get_text()[0:300]
-                    posts.append({'title': title, 'date': date, 'post_name': post_name,
-                                  'content': content,'content_short': content_short})
+                    posts.append({'title': title, 'date': date, 'date_str': date.strftime("%B %d, %Y @ %H:%M"), 
+                                  'post_name': post_name, 'content': content,'content_short': content_short})
         else:
             for post in db_session.query(Posts.post_title, Posts.post_date, \
                                          Posts.post_content, Posts.post_name).\
@@ -310,8 +310,8 @@ def grab_posts(category=None, number=None):
                 except Exception:
                     content_short = soup.get_text()[0:300]
                 title, date, content, post_name = post
-                posts.append({'title': title, 'date': date, 'content': content, 
-                              'post_name': post_name, 'content_short': content_short})
+                posts.append({'title': title, 'date': date, 'date_str': date.strftime("%B %d, %Y @ %H:%M"), 
+                              'content': content, 'post_name': post_name, 'content_short': content_short})
     except Exception as e:
         print e
     
