@@ -46,7 +46,7 @@ class RunKeeperAPI(object):
 
         return {
             'time_elapsed': time_elapsed,
-            'rough_time_elapsed': approx_time_elapsed(time_elapsed),  # TODO: '%s Ago'?
+            'rough_time_elapsed': approx_time_elapsed(time_elapsed),
             'type': activity_type,
             'duration': seconds_breakdown(activity.get('duration', 0)),
             'total_miles': meters_to_miles(activity.get('total_distance', 0)),

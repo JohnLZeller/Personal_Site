@@ -23,11 +23,6 @@ class MyFitnessPalAPI(object):
 
     # TODO: Check all responses for {u'message': u'Bad credentials'}
 
-    def __init__(self):
-        # TODO: Use oauth?
-        # TODO: Load via KMS
-        self.ACCESS_TOKEN = ''
-
     def fetch_details(self):
         # Very hacky right now. Applied for API access. Waiting to hear back.
         r = requests.get(self.API_URL)
