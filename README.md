@@ -6,11 +6,6 @@ Myy personal website. It goes through many iterations as I learn new technologie
 Use Jekyll
 
 # Dependencies
-* [Flask](http://flask.pocoo.org/)
-* Flask Extensions - more found [here](http://flask.pocoo.org/extensions/)
-  * [Flask-SQLAlchemy](http://pythonhosted.org/Flask-SQLAlchemy/)
-In order to install all of these dependancies run this:
-
 ```bash
 pip install -r requirements.txt
 ```
