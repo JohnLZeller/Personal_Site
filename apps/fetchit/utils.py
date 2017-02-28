@@ -1,4 +1,5 @@
 # stdlib
+import logging
 from ConfigParser import NoOptionError, NoSectionError, SafeConfigParser
 from datetime import datetime
 
@@ -7,6 +8,15 @@ import pytz
 
 config = SafeConfigParser()
 config.read('config.ini')
+
+
+# TODO: Does this actually work with just string and not logging.INFO?
+# TODO: Move to utils or something
+logging.basicConfig(
+    filename=config.get('main', 'log_file'),  # TODO: Default?
+    level=config.get('main', 'log_level')  # TODO: Default?
+)
+log = logging.getLogger(__name__)
 
 CREATED_PATTERN = '%Y-%m-%dT%H:%M:%SZ'
 PST_TZ = tz = pytz.timezone('US/Pacific')
@@ -21,7 +31,7 @@ def get_conf(section, key, default=None):
     try:
         value = config.get(section, key)
     except (NoSectionError, NoOptionError) as e:
-        # log.error("Error getting config... (exception: %s)" % e)  # TODO: fix
+        log.error("Error getting config... (exception: %s)" % e)
         return default
     return value
 
