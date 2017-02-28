@@ -20,6 +20,8 @@ log = logging.getLogger(__name__)
 class WundergroundAPI(object):
     API_URL = 'http://api.wunderground.com/api'
 
+    # TODO: Check all responses for {u'message': u'Bad credentials'}
+
     def __init__(self):
         # TODO: Load via KMS
         self.ACCESS_TOKEN = ''

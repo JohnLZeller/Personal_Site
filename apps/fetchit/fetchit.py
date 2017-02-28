@@ -10,6 +10,7 @@ from bs4 import BeautifulSoup
 
 # project
 from api.github import GithubAPI
+from api.myfitnesspal import MyFitnessPalAPI
 from api.wunderground import WundergroundAPI
 from utils import (
     approx_time_elapsed, get_conf, meters_to_miles,
@@ -20,7 +21,6 @@ from utils import (
 RK_ACCESS_TOKEN = ''
 
 DEFAULT_PERIOD = 300
-MFP_API = 'http://www.myfitnesspal.com/food/diary/JohnLZeller'
 RUNKEEPER_API = 'https://api.runkeeper.com'  # TODO: Call it RK
 RUNKEEPER_ACTIVITIES = '%s/fitnessActivities' % RUNKEEPER_API
 RUNKEEPER_CONTENT_TYPE = 'application/vnd.com.runkeeper.FitnessActivityFeed+json'
@@ -32,24 +32,6 @@ logging.basicConfig(
     level=get_conf('main', 'log_level', logging.INFO)
 )
 log = logging.getLogger(__name__)
-
-def fetch_nurtrition_details():
-    # Very hacky at the moment. Applied for API access. Waiting to hear back
-    r = requests.get(MFP_API)
-    soup = BeautifulSoup(r.content)
-    total_class = soup.find('tr', {'class', 'total'})
-    info = {
-        'calories_eaten': total_class.td.next_sibling.next_sibling.string,
-        'coffees': 0
-    }
-
-    # Find all coffees
-    foods = soup.find_all('td', {'class', 'first'})
-    for food in foods:
-        if food.string in ['coffee', 'Coffee', 'espresso', 'Espresso']:
-            info['coffees'] += 1
-
-    return info
 
 def get_most_recent_fitness_activity_uri():
     url = '%s?access_token=%s' % (RUNKEEPER_ACTIVITIES, RK_ACCESS_TOKEN)
@@ -92,12 +74,13 @@ def main():
     log.info("Starting up main loop execution...")
     gh_api = GithubAPI()
     weather_api = WundergroundAPI()
+    mfp_api = MyFitnessPalAPI()
     while 1:
         gh_details = gh_api.fetch_details()
         print gh_details
         print weather_api.current_temp(gh_details['location'])
+        print mfp_api.fetch_details()
         print fetch_fitness_details()
-        print fetch_nurtrition_details()
         # TODO: Catch CTRL-C or CTRL-Z and do some cleanup
 
         time.sleep(float(get_conf('main', 'period', DEFAULT_PERIOD)))
