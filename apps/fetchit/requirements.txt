@@ -1,0 +1,5 @@
+BeautifulSoup==3.2.1
+beautifulsoup4==4.3.2
+pytz==2014.7
+redis==2.10.5
+requests==2.2.1
