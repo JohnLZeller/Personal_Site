@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 # stdlib
 from bs4 import BeautifulSoup
 

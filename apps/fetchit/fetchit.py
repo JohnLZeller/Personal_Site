@@ -10,6 +10,7 @@ from bs4 import BeautifulSoup
 
 # project
 from api.github import GithubAPI
+from api.wunderground import WundergroundAPI
 from utils import (
     approx_time_elapsed, get_conf, meters_to_miles,
     seconds_breakdown, time_since
@@ -17,10 +18,8 @@ from utils import (
 
 
 RK_ACCESS_TOKEN = ''
-WEATHER_ACCESS_TOKEN = ''
 
 DEFAULT_PERIOD = 300
-WEATHER_API = 'http://api.wunderground.com/api'
 MFP_API = 'http://www.myfitnesspal.com/food/diary/JohnLZeller'
 RUNKEEPER_API = 'https://api.runkeeper.com'  # TODO: Call it RK
 RUNKEEPER_ACTIVITIES = '%s/fitnessActivities' % RUNKEEPER_API
@@ -33,17 +32,6 @@ logging.basicConfig(
     level=get_conf('main', 'log_level', logging.INFO)
 )
 log = logging.getLogger(__name__)
-
-def current_temp(location):
-    # TODO Limited to 500 calls per day, so let's not waste it!
-    city, state_abv = location.split(',')
-    city = city.replace(' ', '_')
-    url = '%s/%s/conditions/q/%s/%s.json' % (
-        WEATHER_API, WEATHER_ACCESS_TOKEN, state_abv, city
-    )
-    r = requests.get(url)
-    weather = json.loads(r.content)
-    return weather.get('current_observation', {}).get('temp_f', 'ERR')
 
 def fetch_nurtrition_details():
     # Very hacky at the moment. Applied for API access. Waiting to hear back
@@ -103,10 +91,11 @@ def time_since_fitness_activity(ts_str):
 def main():
     log.info("Starting up main loop execution...")
     gh_api = GithubAPI()
+    weather_api = WundergroundAPI()
     while 1:
         gh_details = gh_api.fetch_details()
         print gh_details
-        print current_temp(gh_details['location'])
+        print weather_api.current_temp(gh_details['location'])
         print fetch_fitness_details()
         print fetch_nurtrition_details()
         # TODO: Catch CTRL-C or CTRL-Z and do some cleanup
