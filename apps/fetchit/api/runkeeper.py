@@ -43,15 +43,28 @@ class RunKeeperAPI(object):
         activity_ts = activity.get('start_time', '')
         time_elapsed = self.time_since(activity_ts)
         activity_type = activity.get('type', '')
+        duration = seconds_breakdown(activity.get('duration', 0))
 
         return {
             'time_elapsed': time_elapsed,
             'rough_time_elapsed': approx_time_elapsed(time_elapsed),
             'type': activity_type,
-            'duration': seconds_breakdown(activity.get('duration', 0)),
+            'duration': self.normalize_duration(duration),
+            'total_calories': 0,  # TODO: Add this!
             'total_miles': meters_to_miles(activity.get('total_distance', 0)),
             'num_activity_words': len(activity_type.split(' '))
         }
+
+    def normalize_duration(self, duration):
+        if not duration.get('hours'):
+            duration['hours'] = 0
+
+        # Format for nice visual presentation
+        duration['hours'] = "%02d" % duration['hours']
+        duration['minutes'] = "%02d" % duration['minutes']
+        duration['seconds'] = "%02d" % duration['seconds']
+
+        return duration
 
     def last_activity_uri(self):
         url = '%s?access_token=%s' % (self.ACTIVITIES_URL, self.ACCESS_TOKEN)
