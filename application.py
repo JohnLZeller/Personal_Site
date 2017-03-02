@@ -48,52 +48,6 @@ REDIS_PORT = get_conf('redis', 'port', 6379)
 REDIS_DB = get_conf('redis', 'db', 0)  # TODO: get_int?
 
 
-# Skills
-LANGUAGES = [
-    {'language': 'Python', 'perc': 100},
-    {'language': 'Javascript', 'perc': 60},
-    {'language': 'Java', 'perc': 30},
-    {'language': 'Bash', 'perc': 30},
-    {'language': 'CSS', 'perc': 30},
-    {'language': 'HTML', 'perc': 30},
-    {'language': 'Mako', 'perc': 30},
-    {'language': 'Jinja2', 'perc': 30},
-    {'language': 'SQLite', 'perc': 30},
-    {'language': 'MySQL', 'perc': 30},
-    {'language': 'C', 'perc': 20},
-    {'language': 'C++', 'perc': 5},
-    {'language': 'PHP', 'perc': 5},
-    {'language': 'MASM', 'perc': 1}
-]
-
-TECHNOLOGIES = [
-    {'technology': 'Git', 'perc': 100},
-    {'technology': 'Mercurial', 'perc': 100},
-    {'technology': 'Pylons', 'perc': 100},
-    {'technology': 'Flask', 'perc': 100},
-    {'technology': 'Docker', 'perc': 100},
-    {'technology': 'Ubuntu', 'perc': 100},
-    {'technology': 'OSX', 'perc': 100},
-    {'technology': 'Wordpress', 'perc': 100},
-    {'technology': 'Vagrant', 'perc': 100},
-    {'technology': 'RabbitMQ', 'perc': 100},
-    {'technology': 'Apache', 'perc': 100},
-    {'technology': 'Django', 'perc': 100},
-    {'technology': 'Subversion', 'perc': 100},
-    {'technology': 'JQuery', 'perc': 100},
-    {'technology': 'Drupal', 'perc': 100},
-    {'technology': 'Flot', 'perc': 100},
-    {'technology': 'SQL Migration', 'perc': 100},
-    {'technology': 'Buildbot', 'perc': 100},
-    {'technology': 'Redis', 'perc': 100},
-    {'technology': 'Nagios', 'perc': 100},
-    {'technology': 'Node.js', 'perc': 100},
-    {'technology': 'Grunt', 'perc': 100},
-    {'technology': 'Travis', 'perc': 100},
-    {'technology': 'Memcached', 'perc': 100}
-]
-
-
 def send_email(form):
     msg = Message(
         subject='CONTACT ME: ' + form.name.data,
