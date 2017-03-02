@@ -72,14 +72,6 @@ body{height:100%}
     margin-left: -30px;
 }
 
-/* =================== Progress Bars =================== */
-.progress-legend {
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-    height: 10px;
-    margin-bottom: 5px;
-}
-
 /* ==================== Work Panels ============================== */
 .user-details {position: relative; padding: 0px 5px 0px 5px;}
 .user-details .user-info-block {width: 100%; position: relative; top: 55px; background: rgb(255, 255, 255); z-index: 0; padding-top: 35px; margin-bottom: 5px;}
