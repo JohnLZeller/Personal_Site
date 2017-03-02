@@ -84,8 +84,6 @@ def home():
     return render_template(
         'index.html',
         form=form,
-        language_experience=LANGUAGES,
-        technology_experience=TECHNOLOGIES,
         fitness=get_json(conn, 'runkeeper_data'),
         commit=get_json(conn, 'github_data'),
         current_temp=get_json(conn, 'temp_f'),
