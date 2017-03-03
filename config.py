@@ -6,6 +6,7 @@ import logging.handlers
 
 import os
 import sys
+import traceback
 
 MAX_LOG_BYTES = 10 * 1024 * 1024
 CFG_FILENAME = 'config.ini'
