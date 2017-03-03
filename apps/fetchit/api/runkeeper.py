@@ -1,4 +1,6 @@
 # stdlib
+from config import get_base_config
+
 import json
 import logging
 import requests
@@ -10,6 +12,7 @@ from utils import (
 )
 
 log = logging.getLogger(__name__)
+config = get_base_config()
 
 
 class RunKeeperAPI(object):
@@ -23,7 +26,7 @@ class RunKeeperAPI(object):
     def __init__(self):
         # TODO: Use oauth?
         # TODO: Load via KMS
-        self.ACCESS_TOKEN = ''
+        self.ACCESS_TOKEN = config.get('api', 'runkeeper_key')
 
     def fetch_details(self):
         activity_uri = self.last_activity_uri()

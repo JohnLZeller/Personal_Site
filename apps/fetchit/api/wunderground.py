@@ -1,9 +1,12 @@
 # stdlib
+from config import get_base_config
+
 import json
 import logging
 import requests
 
 log = logging.getLogger(__name__)
+config = get_base_config()
 
 
 class WundergroundAPI(object):
@@ -13,7 +16,7 @@ class WundergroundAPI(object):
 
     def __init__(self):
         # TODO: Load via KMS
-        self.ACCESS_TOKEN = ''
+        self.ACCESS_TOKEN = config.get('api', 'wunderground_key')
 
     def current_temp(self, location):
         # TODO Limited to 500 calls per day, so let's not waste it!

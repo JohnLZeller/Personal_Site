@@ -1,16 +1,18 @@
 # stdlib
 from bs4 import BeautifulSoup
 
+from config import get_base_config
+
 import json
 import logging
 import re
 import requests
 
-
 # project
 from utils import approx_time_elapsed, time_since, time_to_local_epoch
 
 log = logging.getLogger(__name__)
+config = get_base_config()
 
 
 class GithubAPI(object):
@@ -24,7 +26,7 @@ class GithubAPI(object):
     def __init__(self):
         # TODO: Use oauth?
         # TODO: Load via KMS
-        self.ACCESS_TOKEN = ''
+        self.ACCESS_TOKEN = config.get('api', 'github_key')
 
     def fetch_details(self):
         push = self.last_push()
