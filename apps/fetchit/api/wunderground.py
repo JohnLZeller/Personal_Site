@@ -3,17 +3,6 @@ import json
 import logging
 import requests
 
-
-# project
-from utils import get_conf
-
-
-# TODO: Does this actually work with just string and not logging.INFO?
-# TODO: Move to utils or something
-logging.basicConfig(
-    filename=get_conf('main', 'log_file', 'fetchit.log'),
-    level=get_conf('main', 'log_level', logging.INFO)
-)
 log = logging.getLogger(__name__)
 
 

@@ -6,17 +6,9 @@ import time
 
 # project
 from utils import (
-    approx_time_elapsed, get_conf, meters_to_miles,
-    seconds_breakdown, time_since
+    approx_time_elapsed, meters_to_miles, seconds_breakdown, time_since
 )
 
-
-# TODO: Does this actually work with just string and not logging.INFO?
-# TODO: Move to utils or something
-logging.basicConfig(
-    filename=get_conf('main', 'log_file', 'fetchit.log'),
-    level=get_conf('main', 'log_level', logging.INFO)
-)
 log = logging.getLogger(__name__)
 
 

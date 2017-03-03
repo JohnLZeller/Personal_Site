@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 # stdlib
+from config import get_base_config, initialize_logging  # noqa
 import logging
 import time
 
@@ -12,18 +13,11 @@ from api.wunderground import WundergroundAPI
 
 from cache import RedisCache
 
-from utils import get_conf
-
-
 DEFAULT_PERIOD = 300
 
-# TODO: Does this actually work with just string and not logging.INFO?
-# TODO: Move to utils or something
-logging.basicConfig(
-    filename=get_conf('main', 'log_file', 'fetchit.log'),
-    level=get_conf('main', 'log_level', logging.INFO)
-)
+initialize_logging()
 log = logging.getLogger(__name__)
+config = get_base_config()
 
 
 def main():
@@ -34,7 +28,6 @@ def main():
     mfp_api = MyFitnessPalAPI()
     rk_api = RunKeeperAPI()
 
-    import pdb; pdb.set_trace()
     # TODO: Get from cache, and pass to api class to replace not found data
     while 1:
         gh_details = gh_api.fetch_details()
@@ -46,7 +39,8 @@ def main():
         log.info("Data cached successfully!")
         # TODO: Catch CTRL-C or CTRL-Z and do some cleanup
 
-        time.sleep(float(get_conf('main', 'period', DEFAULT_PERIOD)))
+        sleep_period = config.getint('main', 'period') or DEFAULT_PERIOD
+        time.sleep(float(sleep_period))
 
     log.info("Shutting down...")
 

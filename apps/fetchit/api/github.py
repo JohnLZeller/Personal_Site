@@ -8,17 +8,8 @@ import requests
 
 
 # project
-from utils import (
-    approx_time_elapsed, get_conf, time_since, time_to_local_epoch
-)
+from utils import approx_time_elapsed, time_since, time_to_local_epoch
 
-
-# TODO: Does this actually work with just string and not logging.INFO?
-# TODO: Move to utils or something
-logging.basicConfig(
-    filename=get_conf('main', 'log_file', 'fetchit.log'),
-    level=get_conf('main', 'log_level', logging.INFO)
-)
 log = logging.getLogger(__name__)
 
 
