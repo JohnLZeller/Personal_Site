@@ -3,7 +3,9 @@ from ConfigParser import SafeConfigParser
 import logging
 import logging.config
 import logging.handlers
+
 import os
+import sys
 
 MAX_LOG_BYTES = 10 * 1024 * 1024
 CFG_FILENAME = 'config.ini'
