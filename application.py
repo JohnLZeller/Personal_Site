@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from ConfigParser import NoOptionError, NoSectionError, SafeConfigParser
+from config import get_base_config, initialize_logging  # noqa
 
 from flask import Flask, render_template
 from flask.ext.mail import Mail, Message
@@ -10,42 +10,26 @@ import json
 import logging
 import redis
 
+initialize_logging()
 
+# App setup
 application = Flask(__name__)
 app = application
+app.config.from_object('config')
 
-config = SafeConfigParser()
-config.read('config.ini')
-
-# TODO: Does this actually work with just string and not logging.INFO?
-# TODO: Move to utils or something
-logging.basicConfig(
-    filename=config.get('main', 'log_file'),
-    level=config.get('main', 'log_level')
-)
-log = logging.getLogger(__name__)
-
-app.config.from_object(__name__)
+# Globals
 mail = Mail(application)
+log = logging.getLogger(__name__)
+config = get_base_config()
 
-
-def get_conf(section, key, default=None):
-    try:
-        value = config.get(section, key)
-    except (NoSectionError, NoOptionError) as e:
-        log.error("Error getting config... (exception: %s)" % e)
-        return default
-    return value
-
-DEBUG = get_conf('main', 'debug', False)
-MAIL_SERVER = get_conf('email', 'server', 'smtp.gmail.com')
-MAIL_PORT = get_conf('email', 'port', 465)
-MAIL_USE_TLS = get_conf('email', 'tls', False)
-MAIL_USE_SSL = get_conf('email', 'ssl', True)
-CSRF_ENABLED = get_conf('main', 'csrf', False)  # TODO: Add CSRF Protection :)
-REDIS_HOST = get_conf('redis', 'host', 'localhost')
-REDIS_PORT = get_conf('redis', 'port', 6379)
-REDIS_DB = get_conf('redis', 'db', 0)  # TODO: get_int?
+MAIL_SERVER = config.get('email', 'server') or 'smtp.gmail.com'
+MAIL_PORT = config.getint('email', 'port') or 465
+MAIL_USE_TLS = config.getboolean('email', 'tls') or False
+MAIL_USE_SSL = config.getboolean('email', 'ssl') or True
+CSRF_ENABLED = config.getboolean('main', 'csrf') or False  # TODO: CSRF :)
+REDIS_HOST = config.get('redis', 'host') or 'localhost'
+REDIS_PORT = config.getint('redis', 'port') or 6379
+REDIS_DB = config.getint('redis', 'db') or 0
 
 
 def send_email(form):
