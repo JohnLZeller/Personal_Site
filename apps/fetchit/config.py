@@ -1,3 +1,4 @@
+# stdlib
 from ConfigParser import SafeConfigParser
 
 import logging
@@ -15,8 +16,6 @@ LOG_FORMAT = (
     '%(asctime)s | %(levelname)s | '
     '%(name)s(%(filename)s:%(lineno)s) | %(message)s'
 )
-DEBUG = False
-SECRET_KEY = ''
 
 log = logging.getLogger(__name__)
 
@@ -83,7 +82,3 @@ def initialize_logging():
     # Set log global
     global log
     log = logging.getLogger(__name__)
-
-# Set secret key
-base_conf = get_base_config()
-SECRET_KEY = base_conf.get('main', 'secret_key') or ''

@@ -1,4 +1,6 @@
 # stdlib
+from config import get_base_config
+
 import json
 import logging
 import requests
@@ -6,18 +8,11 @@ import time
 
 # project
 from utils import (
-    approx_time_elapsed, get_conf, meters_to_miles,
-    seconds_breakdown, time_since
+    approx_time_elapsed, meters_to_miles, seconds_breakdown, time_since
 )
 
-
-# TODO: Does this actually work with just string and not logging.INFO?
-# TODO: Move to utils or something
-logging.basicConfig(
-    filename=get_conf('main', 'log_file', 'fetchit.log'),
-    level=get_conf('main', 'log_level', logging.INFO)
-)
 log = logging.getLogger(__name__)
+config = get_base_config()
 
 
 class RunKeeperAPI(object):
@@ -31,7 +26,7 @@ class RunKeeperAPI(object):
     def __init__(self):
         # TODO: Use oauth?
         # TODO: Load via KMS
-        self.ACCESS_TOKEN = ''
+        self.ACCESS_TOKEN = config.get('api', 'runkeeper_key')
 
     def fetch_details(self):
         activity_uri = self.last_activity_uri()

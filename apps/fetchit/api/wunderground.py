@@ -1,20 +1,12 @@
 # stdlib
+from config import get_base_config
+
 import json
 import logging
 import requests
 
-
-# project
-from utils import get_conf
-
-
-# TODO: Does this actually work with just string and not logging.INFO?
-# TODO: Move to utils or something
-logging.basicConfig(
-    filename=get_conf('main', 'log_file', 'fetchit.log'),
-    level=get_conf('main', 'log_level', logging.INFO)
-)
 log = logging.getLogger(__name__)
+config = get_base_config()
 
 
 class WundergroundAPI(object):
@@ -24,7 +16,7 @@ class WundergroundAPI(object):
 
     def __init__(self):
         # TODO: Load via KMS
-        self.ACCESS_TOKEN = ''
+        self.ACCESS_TOKEN = config.get('api', 'wunderground_key')
 
     def current_temp(self, location):
         # TODO Limited to 500 calls per day, so let's not waste it!

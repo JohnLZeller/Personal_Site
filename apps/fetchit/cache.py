@@ -1,24 +1,18 @@
 # stdlib
+from config import get_base_config
+
 import json
 import logging
 import redis
 
-# project
-from utils import get_conf
-
-# TODO: Does this actually work with just string and not logging.INFO?
-# TODO: Move to utils or something
-logging.basicConfig(
-    filename=get_conf('main', 'log_file', 'fetchit.log'),
-    level=get_conf('main', 'log_level', logging.INFO)
-)
 log = logging.getLogger(__name__)
+config = get_base_config()
 
 
 class RedisCache(object):
-    HOST = get_conf('redis', 'host', 'localhost')
-    PORT = get_conf('redis', 'port', 6379)
-    DB = get_conf('redis', 'db', 0)  # TODO: get_int?
+    HOST = config.get('redis', 'host') or 'localhost'
+    PORT = config.getint('redis', 'port') or 6379
+    DB = config.getint('redis', 'db') or 0
 
     # TODO: Check all responses for {u'message': u'Bad credentials'}
 
