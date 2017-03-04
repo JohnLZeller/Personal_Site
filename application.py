@@ -11,6 +11,7 @@ import logging
 import redis
 
 initialize_logging()
+log = logging.getLogger(__name__)
 
 # App setup
 application = Flask(__name__)
@@ -19,16 +20,8 @@ app.config.from_object('config')
 
 # Globals
 mail = Mail(application)
-log = logging.getLogger(__name__)
 config = get_base_config()
 
-MAIL_SERVER = config.get('email', 'server') or 'smtp.gmail.com'
-MAIL_PORT = config.getint('email', 'port') or 465
-MAIL_USERNAME = config.get('email', 'username') or ''
-MAIL_PASSWORD = config.get('email', 'password') or ''
-MAIL_USE_TLS = config.getboolean('email', 'tls') or False
-MAIL_USE_SSL = config.getboolean('email', 'ssl') or True
-CSRF_ENABLED = config.getboolean('main', 'csrf') or False  # TODO: CSRF :)
 REDIS_HOST = config.get('redis', 'host') or 'localhost'
 REDIS_PORT = config.getint('redis', 'port') or 6379
 REDIS_DB = config.getint('redis', 'db') or 0
@@ -41,12 +34,13 @@ def send_email(form):
     msg = Message(
         subject='CONTACT ME: %s' % sender_name,
         sender=sender_email,
-        recipients=['johnlzeller@gmail.com']
+        recipients=['johnlzeller@gmail.com'],
+        body=form.message.data
     )
-    msg.body = form.message.data
     try:
         mail.send(msg)
     except Exception as e:
+        # TODO: Figure out why logging isn't showing up where expected
         log.error("Email sending failed! (exception: %s" % str(e))
         form.success = False
         # TODO: Show an error, don't just redirect

@@ -17,6 +17,16 @@ LOG_FORMAT = (
 )
 DEBUG = False
 SECRET_KEY = ''
+MAIL_SERVER = 'smtp.gmail.com'
+MAIL_PORT = 465
+MAIL_USERNAME = ''
+MAIL_PASSWORD = ''
+MAIL_USE_TLS = False
+MAIL_USE_SSL = True
+CSRF_ENABLED = True
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+REDIS_DB = 0
 
 log = logging.getLogger(__name__)
 
@@ -87,3 +97,13 @@ def initialize_logging():
 # Set secret key
 base_conf = get_base_config()
 SECRET_KEY = base_conf.get('main', 'secret_key') or ''
+MAIL_SERVER = config.get('email', 'server') or 'smtp.gmail.com'
+MAIL_PORT = config.getint('email', 'port') or 465
+MAIL_USERNAME = config.get('email', 'username') or ''
+MAIL_PASSWORD = config.get('email', 'password') or ''
+MAIL_USE_TLS = config.getboolean('email', 'tls') or False
+MAIL_USE_SSL = config.getboolean('email', 'ssl') or True
+CSRF_ENABLED = config.getboolean('main', 'csrf') or True
+REDIS_HOST = config.get('redis', 'host') or 'localhost'
+REDIS_PORT = config.getint('redis', 'port') or 6379
+REDIS_DB = config.getint('redis', 'db') or 0
