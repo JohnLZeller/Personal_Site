@@ -41,7 +41,6 @@ def send_email(form):
     try:
         mail.send(msg)
     except Exception as e:
-        # TODO: Figure out why logging isn't showing up where expected
         log.error("Email sending failed! (exception: %s" % str(e))
         form.success = False
         # TODO: Show an error, don't just redirect
@@ -60,15 +59,18 @@ def get_json(conn, key):
 @app.route('/', methods=['GET', 'POST'])
 def home():
     log.info("Opening redis connection...")
+    section = None
     pool = redis.ConnectionPool(host=REDIS_HOST, port=REDIS_PORT, db=REDIS_DB)
     conn = redis.Redis(connection_pool=pool)
 
     form = ContactForm()
     if form.validate_on_submit():
         form = send_email(form)
+        section = 'contact'
 
     return render_template(
         'index.html',
+        section=section,
         form=form,
         fitness=get_json(conn, 'runkeeper_data'),
         commit=get_json(conn, 'github_data'),

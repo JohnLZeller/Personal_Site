@@ -1,15 +1,5 @@
 <!-- Based on Cover Template for Bootstrap by @mdo -->
 
-<!-- ===============================================================
- * Filename: layout.html
- * Author: John Zeller
- * Date Created: January 7, 2014
- * Recently Updated: January 7, 2014
- * ------
- * Referenced:
- *              http://stackoverflow.com/questions/18455070/how-to-achieve-active-state-in-a-navigation-for-a-one-page-website
- * =============================================================-->
-
 <!DOCTYPE HTML>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -137,5 +127,8 @@
          $(this).css('border-bottom-color', 'rgba(255,255,255,.25)');
          });
        });
+      {% if section %}
+          document.location.hash = '#{{ section }}';
+      {% endif %}
     </script>
   </body>
