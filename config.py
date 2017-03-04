@@ -97,13 +97,13 @@ def initialize_logging():
 # Set secret key
 base_conf = get_base_config()
 SECRET_KEY = base_conf.get('main', 'secret_key') or ''
-MAIL_SERVER = config.get('email', 'server') or 'smtp.gmail.com'
-MAIL_PORT = config.getint('email', 'port') or 465
-MAIL_USERNAME = config.get('email', 'username') or ''
-MAIL_PASSWORD = config.get('email', 'password') or ''
-MAIL_USE_TLS = config.getboolean('email', 'tls') or False
-MAIL_USE_SSL = config.getboolean('email', 'ssl') or True
-CSRF_ENABLED = config.getboolean('main', 'csrf') or True
-REDIS_HOST = config.get('redis', 'host') or 'localhost'
-REDIS_PORT = config.getint('redis', 'port') or 6379
-REDIS_DB = config.getint('redis', 'db') or 0
+MAIL_SERVER = base_conf.get('email', 'server') or 'smtp.gmail.com'
+MAIL_PORT = base_conf.getint('email', 'port') or 465
+MAIL_USERNAME = base_conf.get('email', 'username') or ''
+MAIL_PASSWORD = base_conf.get('email', 'password') or ''
+MAIL_USE_TLS = base_conf.getboolean('email', 'tls') or False
+MAIL_USE_SSL = base_conf.getboolean('email', 'ssl') or True
+CSRF_ENABLED = base_conf.getboolean('main', 'csrf') or True
+REDIS_HOST = base_conf.get('redis', 'host') or 'localhost'
+REDIS_PORT = base_conf.getint('redis', 'port') or 6379
+REDIS_DB = base_conf.getint('redis', 'db') or 0
