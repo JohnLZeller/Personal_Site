@@ -45,7 +45,7 @@ class RunKeeperAPI(object):
             'rough_time_elapsed': approx_time_elapsed(time_elapsed),
             'type': activity_type,
             'duration': self.normalize_duration(duration),
-            'total_calories': 0,  # TODO: Add this!
+            'total_calories': activity.get('total_calories', 0),
             'total_miles': meters_to_miles(activity.get('total_distance', 0)),
             'num_activity_words': len(activity_type.split(' '))
         }
