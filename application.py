@@ -35,18 +35,23 @@ REDIS_DB = config.getint('redis', 'db') or 0
 
 
 def send_email(form):
+    sender_name = form.name.data
+    sender_email = form.email.data
+    log.info("Sending an email from %s, %s" % (sender_name, sender_email))
     msg = Message(
-        subject='CONTACT ME: ' + form.name.data,
-        sender=form.email.data,
+        subject='CONTACT ME: %s' % sender_name,
+        sender=sender_email,
         recipients=['johnlzeller@gmail.com']
     )
     msg.body = form.message.data
     try:
         mail.send(msg)
     except Exception as e:
-        print e
+        log.error("Email sending failed! (exception: %s" % str(e))
         form.success = False
+        # TODO: Show an error, don't just redirect
         return form
+    log.info("Email sent successfully!")
     form.success = True
 
     return form
