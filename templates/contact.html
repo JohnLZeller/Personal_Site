@@ -16,6 +16,7 @@
   </div>
   {% if form.success %}<span style="color: green;">Email sent!</span>{% endif %}
   <form role="form" action="" method="post" name="contact">
+    {{ form.csrf_token }}
     <div class="form-group">
       {% for error in form.errors.name %}<span style="color: red;">[{{error}}]</span>{% endfor %}<br>
       {{ form.name(placeholder="Full Name", class="form-control") }}

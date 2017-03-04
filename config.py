@@ -94,7 +94,7 @@ def initialize_logging():
     global log
     log = logging.getLogger(__name__)
 
-# Set secret key
+# Load config constants
 base_conf = get_base_config()
 SECRET_KEY = base_conf.get('main', 'secret_key') or ''
 MAIL_SERVER = base_conf.get('email', 'server') or 'smtp.gmail.com'

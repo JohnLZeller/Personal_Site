@@ -2,7 +2,8 @@
 from config import get_base_config, initialize_logging  # noqa
 
 from flask import Flask, render_template
-from flask.ext.mail import Mail, Message
+
+from flask_mail import Mail, Message
 
 from forms import ContactForm
 
@@ -19,7 +20,7 @@ app = application
 app.config.from_object('config')
 
 # Globals
-mail = Mail(application)
+mail = Mail(app)
 config = get_base_config()
 
 REDIS_HOST = config.get('redis', 'host') or 'localhost'
