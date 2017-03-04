@@ -24,6 +24,8 @@ config = get_base_config()
 
 MAIL_SERVER = config.get('email', 'server') or 'smtp.gmail.com'
 MAIL_PORT = config.getint('email', 'port') or 465
+MAIL_USERNAME = config.get('email', 'username') or ''
+MAIL_PASSWORD = config.get('email', 'password') or ''
 MAIL_USE_TLS = config.getboolean('email', 'tls') or False
 MAIL_USE_SSL = config.getboolean('email', 'ssl') or True
 CSRF_ENABLED = config.getboolean('main', 'csrf') or False  # TODO: CSRF :)
