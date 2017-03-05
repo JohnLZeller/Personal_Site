@@ -61,7 +61,10 @@ def home():
     log.info("Opening redis connection...")
     section = None
     pool = redis.ConnectionPool(host=REDIS_HOST, port=REDIS_PORT, db=REDIS_DB)
-    conn = redis.Redis(connection_pool=pool)
+    conn = redis.StrictRedis(
+        connection_pool=pool,
+        password=config.get('redis', 'password')
+    )
 
     form = ContactForm()
     if form.validate_on_submit():

@@ -18,7 +18,10 @@ class RedisCache(object):
 
     def __init__(self):
         pool = redis.ConnectionPool(host=self.HOST, port=self.PORT, db=self.DB)
-        self.conn = redis.Redis(connection_pool=pool)
+        self.conn = redis.Redis(
+            connection_pool=pool,
+            password=config.get('redis', 'password')
+        )
 
     def get_json(self, key):
         data = self.conn.get(key)
