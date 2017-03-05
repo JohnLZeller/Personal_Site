@@ -63,7 +63,7 @@ def approx_time_elapsed(time_elapsed):
         if value > 0:
             if value == 1:
                 unit = unit[:-1]  # removes the 's' when value is singular
-            rough_time_elapsed = "%s %s" % (time_elapsed[unit], unit.title())
+            rough_time_elapsed = "%s %s" % (value, unit.title())
             break
     return rough_time_elapsed
 
