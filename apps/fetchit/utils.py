@@ -59,8 +59,11 @@ def approx_time_elapsed(time_elapsed):
     units = ['weeks', 'days', 'hours', 'minutes', 'seconds']
     units = [u for u in units if time_elapsed.get(u)]
     for unit in units:
-        if time_elapsed[unit] > 0:
-            rough_time_elapsed = "%s %s" % (time_elapsed[unit], unit.title())
+        value = time_elapsed[unit]
+        if value > 0:
+            if value == 1:
+                unit = unit[:-1]  # removes the 's' when value is singular
+            rough_time_elapsed = "%s %s" % (value, unit.title())
             break
     return rough_time_elapsed
 
