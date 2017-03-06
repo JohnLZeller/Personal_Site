@@ -60,11 +60,13 @@ def get_json(conn, key):
 def home():
     log.info("Opening redis connection...")
     section = None
-    pool = redis.ConnectionPool(host=REDIS_HOST, port=REDIS_PORT, db=REDIS_DB)
-    conn = redis.StrictRedis(
-        connection_pool=pool,
+    pool = redis.ConnectionPool(
+        host=REDIS_HOST,
+        port=REDIS_PORT,
+        db=REDIS_DB,
         password=config.get('redis', 'password')
     )
+    conn = redis.StrictRedis(connection_pool=pool)
 
     form = ContactForm()
     if form.validate_on_submit():
