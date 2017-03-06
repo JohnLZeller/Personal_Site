@@ -17,8 +17,13 @@ class RedisCache(object):
     # TODO: Check all responses for {u'message': u'Bad credentials'}
 
     def __init__(self):
-        pool = redis.ConnectionPool(host=self.HOST, port=self.PORT, db=self.DB)
-        self.conn = redis.Redis(connection_pool=pool)
+        pool = redis.ConnectionPool(
+            host=self.HOST,
+            port=self.PORT,
+            db=self.DB,
+            password=config.get('redis', 'password')
+        )
+        self.conn = redis.StrictRedis(connection_pool=pool)
 
     def get_json(self, key):
         data = self.conn.get(key)
