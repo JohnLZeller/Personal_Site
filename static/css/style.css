@@ -31,9 +31,14 @@ body{height:100%}
     background-color: #2A3642;
 }
 
-.projects-page {
+.references-page {
     height: 110% !important;
     background-color: #007787;
+}
+
+.blog-page {
+    height: 110% !important;
+    background-color: #2A3642;
 }
 
 .contact-page {
