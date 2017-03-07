@@ -3,8 +3,8 @@
 <div class="container" style="padding: 65px 20px 180px 20px; text-shadow: none !important;">
     <div class="row">
         <h2 class="references-heading">References</h2>
-    	{{ for ref in references }}
+    	{% for ref in references %}
     		{% include "reference-display.html" %}
-    	{{ endfor }}
+    	{% endfor %}
     </div>
 </div>
