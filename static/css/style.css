@@ -77,6 +77,41 @@ body{height:100%}
     margin-left: -30px;
 }
 
+.ref-display {
+    background: #007787;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.ref-img {
+    margin-top: 15px;
+    margin-left: 10px;
+    margin-bottom: 15px;
+}
+
+.ref-well {
+    background: grey;
+}
+
+.ref-well h1 {
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+
+.ref-right-quote {
+    margin-top: -32px;
+}
+
+.ref-right-quote i {
+    position: absolute;
+    left: 0;
+}
+
+.ref-bottom {
+    margin-bottom: 10px;
+}
+
 /* ==================== Work Panels ============================== */
 .user-details {position: relative; padding: 0px 5px 0px 5px;}
 .user-details .user-info-block {width: 100%; position: relative; top: 55px; background: rgb(255, 255, 255); z-index: 0; padding-top: 35px; margin-bottom: 5px;}
@@ -89,6 +124,7 @@ body{height:100%}
   .user-body .tab-content > div {float: left; width: 100%;}
   .user-body .tab-content h4 {width: 100%; margin: 10px 0; color: #333;}
 .experience-heading {margin-bottom: -30px;}
+.references-heading {margin-bottom: -30px;}
 .skill-heading {margin-top: -20px; color: black;}
 
 .work-badge {display: inline !important; padding-bottom: 10px; max-height: 100px; max-width: 230px;}
