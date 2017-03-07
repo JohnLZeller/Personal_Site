@@ -1,30 +1,13 @@
-<div class="col-md-5 col-xs-10 col-xs-ofset-1 ref-display">
-  <!-- header -->
-  <div class="row">
-    <!-- photo -->
-    <div class="col-md-4 col-xs-4">
-      <img src="{{ ref['image'] }}" class="img-rounded media-object img-responsive ref-img" />
+<div class="item{% if index == 0 %} active{% endif %}">
+  <blockquote>
+    <div class="row">
+      <div class="col-sm-3 text-center">
+        <img class="img-circle" src="{{ ref['image'] }}" style="width: 100px; height: 100px;">
+      </div>
+      <div class="col-sm-9">
+        <p>{{ ref['text'] }}</p>
+        <small>{{ ref['name'] }} ({{ ref['title'] }})</small>
+      </div>
     </div>
-    <!-- title -->
-    <div class="col-md-8 col-xs-8">
-      <h2>{{ ref['name'] }}</h2>
-      <h4>{{ ref['title'] }}</h4>
-    </div>
-  </div>
-
-  <!-- quote -->
-  <div class="row">
-    <div class="col-md-1">
-      <i class="fa fa-quote-left fa-2x"></i>
-    </div>
-    <div class="col-md-10">
-      <p>{{ ref['text'] }}</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-11 ref-bottom"></div>
-    <div class="col-md-1 ref-right-quote">
-      <i class="fa fa-quote-right fa-2x"></i>
-    </div>
-  </div>
+  </blockquote>
 </div>
