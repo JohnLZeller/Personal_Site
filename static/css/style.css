@@ -78,7 +78,7 @@ body{height:100%}
 }
 
 .ref-display {
-    background: #007787;
+    background: #354c50;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -124,7 +124,7 @@ body{height:100%}
   .user-body .tab-content > div {float: left; width: 100%;}
   .user-body .tab-content h4 {width: 100%; margin: 10px 0; color: #333;}
 .experience-heading {margin-bottom: -30px;}
-.references-heading {margin-bottom: -30px;}
+.references-heading {margin-bottom: 100px;}
 .skill-heading {margin-top: -20px; color: black;}
 
 .work-badge {display: inline !important; padding-bottom: 10px; max-height: 100px; max-width: 230px;}
