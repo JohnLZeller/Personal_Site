@@ -28,14 +28,25 @@ def main():
     mfp_api = MyFitnessPalAPI()
     rk_api = RunKeeperAPI()
 
+    # TODO: Write a central process that loads modules and handles errors,
+    #       and whether or not to cache
     # TODO: Get from cache, and pass to api class to replace not found data
     while 1:
         gh_details = gh_api.fetch_details()
         conn.set_json('github_data', gh_details)
         temp = weather_api.current_temp(gh_details['location'])
         conn.set_json('temp_f', temp)
-        conn.set_json('myfitnesspal_data', mfp_api.fetch_details())
         conn.set_json('runkeeper_data', rk_api.fetch_details())
+
+        # Since MFP is crawling HTML, let's catch funniness with returned page
+        try:
+            mfp_details = mfp_api.fetch_details()
+            conn.set_json('myfitnesspal_data', mfp_details)
+        except AttributeError as e:
+            log.error(
+                "Error when crawling/storing MyFitnessPal data. "
+                "(exception: %s)" % str(e)
+            )
         log.info("Data cached successfully!")
         # TODO: Catch CTRL-C or CTRL-Z and do some cleanup
 
